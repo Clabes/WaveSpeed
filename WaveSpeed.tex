@@ -1,0 +1,2060 @@
+ \documentclass[12pt,a4paper]{amsart}
+    \setlength{\textwidth}{\paperwidth}
+    \addtolength{\textwidth}{-2in}
+    \calclayout
+    \numberwithin{equation}{section}
+    \allowdisplaybreaks
+    \theoremstyle{plain}
+    \newtheorem{theorem}{Theorem}[section]
+    \newtheorem{lemma}[theorem]{Lemma}
+    \newtheorem{claim}[theorem]{Claim}
+    \newtheorem{proposition}[theorem]{Proposition}
+    \newtheorem{corollary}[theorem]{Corollary}
+    \newtheorem*{ack*}{Acknowledgment}
+    \theoremstyle{remark}
+    \newtheorem{example}[theorem]{Example}
+\usepackage{amssymb}
+\usepackage{mathtools}
+    \mathtoolsset{showonlyrefs}
+\newenvironment{proof*}[1][\proofname]{
+	\renewcommand\qedsymbol{\rule{3mm}{3mm}}
+	\begin{proof}[#1]}{\end{proof}}
+\usepackage{mathrsfs}
+\usepackage{comment}
+% \usepackage{hyperref}
+\usepackage[backref]{hyperref}
+\usepackage{dsfont}
+\usepackage[inline]{showlabels}
+\usepackage{xcolor}
+
+
+\newcommand{\md}{\mathrm{d}}
+\newcommand{\e}{\epsilon}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\p}{\partial}
+
+\begin{document}
+	\title[]{{\tt TBD}}
+	\author[]{Claynton Barns II}
+	\address{{\tt TBD}}
+	\email{{\tt TBD}}
+	\author[]{Leonid Mytnik}
+	\address{{\tt TBD}}
+	\email{{\tt TBD}}
+	\author[]{Zhenyao Sun}
+	\address{{\tt TBD}}
+	\email{zhenyao.sun@gmail.com}
+\begin{abstract}
+	{\tt TBD}
+\end{abstract}
+\maketitle
+	
+\section{Introduction}
+\subsection{Background} 
+    {\tt TBD}
+\subsection{Main result} \label{sec:M} 
+
+	Fix $p\in (\frac{1}{2},1)$.
+	In this paper, we will consider the SPDE
+\begin{equation} \label{eq:M.1}
+	\partial_t u_{t,x} 
+	= \partial_x^2 u_{t,x} + f(u_{t,x}) + \epsilon \sigma(u_{t,x}) \dot W_{t,x} \quad t\geq 0, x\in \mathbb R,
+\end{equation}
+	where $\epsilon > 0$,  
+\[
+	\sigma(z) := \sqrt{z(1-z)} \mathbf 1_{z\in [0,1]}, \quad z\in \mathbb R,
+\]
+and $f$ is a real function on $\mathbb R$ satisfies that there exists $0< k<K<\infty$ such that
+\[
+	kz^p(1-z)\mathbf 1_{z\in [0,1]}\leq f (z)\leq Kz^p(1-z)\mathbf 1_{z\in [0,1]}, \quad z\in \mathbb R.
+\] 
+	Let us first recall some known results from \cite{MuellerMytnikRyzhik2019TheSpeed}. 
+	It is proved that
+\begin{equation}\label{eq:M.11}
+\begin{minipage}{0.9\textwidth}
+	for every $\epsilon > 0$ and $F \in \mathcal B(\mathbb R, [0,1])$ with compact interface,  there exists a mild solution $u$ to SPDE \eqref{eq:M.1}, taking values in $[0,1]$, defined on some usual probability space $(\Omega, \mathcal G, \mathcal F=(\mathcal F_t)_{t\geq 0}, \mathrm P)$, with respect to some $\mathcal F$-white noise $W$, such that $u_{0,\cdot} = F$;
+\end{minipage}
+\end{equation}
+\begin{equation}\label{eq:M.115}
+ \begin{minipage}{0.85\textwidth}
+for every $\epsilon>0$ and $F\in \mathcal B(\mathbb R, [0,1])$ with compact interface, the distribution of  $u$ given by \eqref{eq:M.11} is unique;
+\end{minipage}
+\end{equation}
+and 
+\begin{equation} \label{eq:M.116}
+\begin{minipage}{0.9\textwidth}
+	for every $\epsilon>0$ and $F\in \mathcal B(\mathbb R, [0,1])$ with compact interface, the solution $u$ given by \eqref{eq:M.11} has locally compact interface.
+\end{minipage}
+\end{equation}
+	Furthermore, 
+\begin{equation}\label{eq:M.12}
+\begin{minipage}{0.9\textwidth}
+	for each $\epsilon > 0$, there exists a $\mathrm v_{\epsilon}>0$ such that, for any $F \in \mathcal B(\mathbb R, [0,1])$ with compact interface, the solution $u$ of SPDE \eqref{eq:M.1} given by \eqref{eq:M.11} satisfies
+	\[
+	\lim_{t\to \infty} \frac{R_0(u_t)}{t}
+	= \mathrm v_\epsilon, \quad \text{a.s.}
+	\]
+\end{minipage}\\
+\end{equation}
+	The main result of this paper is the following.
+\begin{theorem} \label{thm:M.2}
+	\color{blue}
+	Let $(\mathrm v_\epsilon)_{\epsilon>0}$ be given by \eqref{eq:M.12}.
+	Then there exists $c,C>0$ and $\epsilon_0 > 0$, such that for each $\epsilon \in (0, \epsilon_0)$ we have
+\[
+	c \epsilon^{-2 \frac {1-p}{1+p}} \leq \mathrm v_{\epsilon} \leq C \epsilon^{-2 \frac {1-p}{1+p}}.
+\]
+\end{theorem}
+
+\subsection{Proof of Theorem \ref{thm:M.2}} \label{sec:S}
+\subsubsection{Lower bound}
+\begin{lemma}\label{thm:S.1}
+	Let $\epsilon\in (0,1)$ and $F(z) = \mathbf 1_{z< 0},z\in \mathbb R$.
+	Then there exists $(u,\underline u, W^u, W^{\underline u} )$ defined a usual probability space $(\Omega, \mathcal G,\mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P)$ such that 
+	(1) $W^u$ and $W^{\underline u}$ are $\mathcal F$-white noise; 
+	(2) $u$ is a mild solution to SPDE \eqref{eq:S.1} with initial data $F$, with respect to $W$; and 
+	(3) $\underline u$ is a mild solution to the SPDE 
+\begin{align} 
+&  \partial_t \underline u_{t,x} = \partial_x^2 \underline u_{t,x} + \underline f(\underline u_{t,x}) + \epsilon \sigma(\underline u_{t,x}) \dot W^{\underline u}_{t,x}, \quad t\geq 0, x\in \mathbb R
+\end{align}
+	with initial data $F$, where 
+\begin{align} 
+& \underline f(z): = \begin{cases}
+0, & \quad z\in (-\infty, 0],
+\\\epsilon^{-(1-p)\rho} z, & \quad z \in (0,\epsilon^\rho],
+\\- \epsilon^{-(1-p)\rho}(z - 2\epsilon^\rho), &\quad z\in (\epsilon^\rho, 2\epsilon^\rho],
+\\ 0 , & \quad z\in (2\epsilon^\rho, \infty),
+\end{cases} 
+\end{align}
+ and $\rho : = \frac{4}{1+p}$; 
+ (4) $\underline u_{t,x} \leq u_{t,x}$ for all $t\geq 0$ and $x\in \mathbb R$.
+ \end{lemma}
+
+\begin{proof}
+	\color{blue}
+	This is simply the weak comparison principle for SPDEs. One only have to verify the analytic fact that  $\underline f\leq f$.
+\end{proof}
+ 
+\begin{lemma} \label{thm:S.15}
+	Let $\epsilon \in (0,1)$ and $F(z) = \mathbf 1_{z<0}, z\in \mathbb R$. Let $(\underline u, W^{\underline u})$, $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P)$ be given by Lemma \ref{thm:S.1}.
+	Let $\rho : = \frac{4}{1+p}$, $a := \epsilon^{- \frac{(1-p)\rho}{4}}$ and $b := \frac{1}{2\epsilon^\rho}$.
+	Then there exists $W^{\tilde {\underline u}}$, an $\mathcal F$-white noise, such that $\tilde {\underline u}_{t,x}:= b\underline u_{a^{-4}t,a^{-2}x}, t\geq 0, x\in \mathbb R$ is a mild solution to the following SPDE
+\begin{align} 
+	& \partial_{t} \tilde {\underline u}_{t,x} = \partial_x^2 \tilde {\underline u}_{t,x} + \tilde{\underline f}(\tilde {\underline u}_{t,x}) +  \tilde{\underline \sigma}(\tilde {\underline u}_{t,x}) \dot W_{t,x}^{\tilde{\underline u}}, \quad t\geq 0, x\in \mathbb R,
+\end{align}
+	with initial data $bF$. 
+	Here 
+\begin{align} 
+& \tilde {\underline f}(z) :=
+\begin{cases}
+0, & \quad z\in (-\infty, 0],
+\\z, & \quad z\in (0, \frac{1}{2}],
+\\1- z, & \quad z\in (\frac{1}{2}, 1],
+\\0, & \quad z\in (1, \infty),
+\end{cases}  
+\end{align}
+and 
+\begin{align} 
+& \tilde {\underline\sigma}(z) :=  2^{-\frac{1}{2}} \sqrt{z(1 -  2\epsilon^\rho z)} \mathbf 1_{z\in [0,b]}, \quad z\geq 0.
+\end{align}
+\end{lemma} 
+\begin{proof}
+	\color{blue}
+	This is simply a re-scaling of the SPDE.
+\end{proof}
+
+\begin{proposition}\label{thm:S.16}
+	\color{red}
+	For each $\epsilon \in (0,1)$, let $\tilde {\underline u}^\epsilon$ be given as the $\tilde {\underline u}$ in Lemma \ref{thm:S.15}. Then there exists $\epsilon_0 \in (0,1)$ and $c>0$ such that for each $\epsilon \in (0, \epsilon_0)$, we have
+\begin{align}
+	\liminf_{t\to \infty} \frac{R_0(\tilde {\underline u}^\epsilon_t)}{t} \geq c.
+\end{align}
+\end{proposition}
+
+\begin{proof}[Proof of the lower bound in Theorem \ref{thm:M.2}]
+	Let $\epsilon\in (0,1)$. 
+	Let $a$, $b$ and $\rho$ be given by Lemma \ref{thm:S.15}.
+	Let $u$ and $\underline u$ be given by Lemma \ref{thm:S.1},
+	and $\tilde {\underline{u}}$ be given by Lemma \ref{thm:S.15}.
+	It can be verified that for each $t\geq 0$,
+\begin{align} 
+& R_0(\underline u_t) 
+= \sup\{x\in \mathbb R: \underline u_{t,x} \neq 0\}
+= \sup\{a^{-2}x\in \mathbb R: b\underline u_{a^{-4}(a^4t),a^{-2}x} \neq 0\}
+\\&\label{eq:S.05}= a^{-2} \sup\{x\in \mathbb R: b\tilde{\underline u}_{a^4t,x} \neq 0\}
+= a^{-2}R_0(\tilde {\underline u}_{a^4t}).
+\end{align}
+	Now let $\epsilon_0\in (0,1)$ and $c > 0$ be given by Proposition \ref{thm:S.16} (which are independent of the choice of $\epsilon$) then if $\epsilon \in (0,\epsilon_0)$ we have
+\begin{align} 
+& \mathrm v_\epsilon 
+\overset{\eqref{eq:M.12}}= \lim_{t\to \infty} \frac{R_0(u_t)}{t} 
+\overset{\text{Lemma \ref{thm:S.1}}}\geq \liminf_{t\to \infty} \frac{R_0(\underline u_t)}{t}
+\overset{\eqref{eq:S.05}}= \liminf_{t\to \infty} \frac{a^{-2}R_0(\tilde {\underline u}_{a^4 t})}{t}
+\\&= \liminf_{t\to \infty} \frac{a^{2}R_0(\tilde {\underline u}_{a^4 t})}{a^4t}
+\overset{\text{Proposition \ref{thm:S.16}}}\geq a^{2} c = c\epsilon^{- 2\frac{1-p}{1+p}}.
+\qedhere
+\end{align}
+\end{proof}
+ 
+\subsubsection{Upper bound}
+    We will be considering the following PDE
+\begin{equation} \label{eq:S.1}
+\begin{cases}
+	\partial_t \varrho_{t,x} 
+	= \Delta_x \varrho_{t,x} + f(\varrho_{t,x}),
+	& x<\mathrm vt, \\
+	\varrho_{t,x} = 0,
+	& x\geq \mathrm vt.
+\end{cases}
+\end{equation}
+    where $\mathrm v \in \mathbb R$ is arbitrary.
+    For any $\mathrm v\in \mathbb R$, we say $F$ is a \emph{traveling wave solution to PDE \eqref{eq:S.1} with speed $\mathrm v$}, if (1) $F$ is a real continuous function on $\mathbb R$, and is doubly differentialable on $(-\infty, 0)$; and 
+    (2) function $(t,x) \mapsto F(x - \mathrm vt)$ defined on $\mathbb R_+ \times \mathbb R$ satisfies \eqref{eq:S.1} pointwise.
+    
+\begin{proposition} \label{thm:S.2}
+    There exists $\varepsilon_0>0$, such that for any $\varepsilon \in (0, \varepsilon_0)$, there exists a unique $\mathrm v_{\varepsilon} \in \mathbb R$ and a unique traveling wave solution $F$ to PDE \eqref{eq:S.1} with speed $\mathrm v_\varepsilon$ satisfying $F(-\infty):= \lim_{x\to -\infty} F(x) = 1$ and $F'(0-):= \lim_{x\uparrow 0}F'(x) = \varepsilon$. 
+    Moreover, there exists $c,C>0$ such that for each $\varepsilon \in (0,\varepsilon_0)$, $c \varepsilon^{-\frac{1-p}{1+p}} \leq \mathrm v_{\varepsilon} \leq C \varepsilon^{-\frac{1-p}{1+p}}$.
+\end{proposition}
+
+\begin{proposition} \label{thm:S.25}
+	\color{blue}
+	Let $\varepsilon >0$ be small enough so that there exists $\mathrm v_{\varepsilon}>0$ in the sense of Proposition \ref{thm:S.2}.
+	Then for any $\bar \varepsilon \geq \varepsilon$ there exists a unique traveling wave solution $F$ to PDE \eqref{eq:S.1} with speed $\mathrm v_\varepsilon$ and that $F'(0-) = \bar\varepsilon$.
+\end{proposition}
+	
+\begin{proposition} \label{thm:S.7}
+	\color{blue}
+	Let $\epsilon> 0$ be small enough so that, taking $\varepsilon = \epsilon^{2}$,	there exists $\mathrm v = \mathrm v_{\varepsilon}>0$ in the sense of Proposition \ref{thm:S.2}.
+	Let $\bar F$, given by Proposition \ref{thm:S.25}, be the unique traveling wave solution to PDE \eqref{eq:S.1} with speed $\mathrm v$ and $\bar F'(0-) = 2 \varepsilon$.	
+	Let $L = \varepsilon^{-1}$ and $T= \lfloor L/\mathrm v\rfloor$.
+	Let $u$ be the mild solution to SPDE \eqref{eq:M.1} given by \eqref{eq:M.11} with initial data $0\leq u_0\leq 1\wedge \bar F$ which has compact interface. 
+	Then it holds that
+\[
+	\mathrm P\big( \forall (t,x)\in [0,T] \times [ L + 1,\infty), u(t,x) = 0\big) \geq \frac{1}{2}.
+\]
+\end{proposition}
+
+\begin{proposition} \label{thm:S.8}
+	Let $\bar F$ be given by Proposition \ref{thm:S.7} which satisfies that $\bar F'(0-) = 2\varepsilon$. 
+	Then $\mathbf 1_{x\leq -\varepsilon^{-1}}\leq \bar F(x)$ for each $x\in E$.
+\end{proposition}
+
+\begin{proof}[Proof of Theorem \ref{thm:M.2}]
+	
+	Define the stopping time
+\begin{align} \label{eq:S.85}
+& \tau =T \wedge \inf\{t\in [0,T]: \exists x\in [L+1,\infty), u(t,x) > 0\}.
+\end{align}
+	Therefore, we have 
+\begin{align} \label{eq:S.86}
+	&\mathrm P( \tau=T) 
+	=\mathrm P(\forall (t,x)\in [0,T] \times [L+1,\infty), u(t,x) = 0)
+	\overset{\text{Propositions \ref{thm:S.7}}}\geq 1/2.
+\end{align}
+	Therefore
+\begin{equation} \label{eq:S.865}
+	\mathrm P[\tau] \geq T \cdot \mathrm P(\tau = T) 
+	\overset{\eqref{eq:S.86}}\geq  T/2.
+\end{equation}
+	Note that by \eqref{eq:M.116}, $u$ has locally compact interface.  
+	Therefore \[-\infty<\inf_{0\leq t\leq T} L_0(u_t)\leq \sup_{0\leq t\leq T} R_0(u_t)< \infty.\]
+	This imply that, almost surely, $u_\tau$ has compact interface, since $\tau$ is a stopping time bounded by $T$ almost surely.
+	More precisely, we can see from \eqref{eq:S.85} that 
+\begin{equation}\label{eq:S.87}
+	R_0(u_\tau) \leq L + 1, \quad \text{a.s.}
+\end{equation}
+	This says that 
+\begin{equation}\label{eq:S.88}
+	u_{\tau,x} 
+	\overset{\eqref{eq:S.87}}\leq \mathbf 1_{x\leq L+1}
+	\overset{\text{Proposition \ref{thm:S.8}}}\leq F\big(x-(L+1+ \varepsilon^{-1})\big), \quad \text{a.s.}
+\end{equation}	
+	Therefore, using an argument similar to that have been used in \cite[(3.7)]{MuellerMytnikQuastel2011Effect}, we can derive that
+\[
+	V_{\epsilon} = \lim_{t\to \infty} \frac{R_0(u_{t})}{t} 
+	\overset{\eqref{eq:S.88}}\leq \frac{L+1 + \varepsilon^{-1}}{\mathrm P[\tau]}
+	\overset{\eqref{eq:S.865}}\leq \frac{2(L+1+\varepsilon^{-1})}{T}
+	\lesssim \varepsilon^{-\frac{1-p}{1+p}} 
+	= \epsilon^{-2\frac{1-p}{1+p}}.
+	\qedhere
+\]
+\end{proof}
+
+\section{Proof of Proposition \ref{thm:S.16}}
+
+{\color{red} TBD}
+
+\section{Proof of Proposition \ref{thm:S.2}} \label{sec:f}
+In this subsection, we will consider $\mathscr G$, the collection of function $g$ satisfying that
+\begin{equation}
+\begin{cases}
+g \in C([0,1]); 
+\\ g(1)  = 0;
+\\ g(u)>0, \quad  u \in (0,1); 
+\\ g \text{ is locally Lipschitz on } (0,1];
+\\ \rho_g:=\varliminf_{u \to 0} g(u)/u > 0.	 
+\end{cases}
+\end{equation}
+
+\begin{proposition} \label{thm:f.1}
+	\color{blue}
+	For any $g\in \mathscr G$ and $\mathrm v\in [0,\sqrt{\rho_g}] \cap [0,\infty)$, there exists a unique $\mathrm x \in C^2[0,\infty)$ satisfies
+	\begin{equation}
+	\begin{cases}
+	 \mathrm x''(t) = \mathrm v \mathrm x'(t) - g\big(\mathrm x(t)\big), \quad t \geq 0;
+	\\ \mathrm x(0)= 0;
+	\\ \mathrm x(t) \text{ strictly increasing to } 1 \text{ as } t\uparrow \infty.
+	\end{cases}
+	\end{equation}
+	Moreover, for any fixed $g \in \mathscr G$, the map $\mathrm v\in  [0, \sqrt{\rho_g}] \cap [0,\infty) \mapsto \mathrm x'(0)$ is strictly decreasing to $0$.
+\end{proposition}
+	Note that if $f\in \mathscr G$ satisfy $f(z) \asymp z^p(1-z)$ for $z\in [0,1]$, then $\rho_f = \infty$.
+
+\begin{proposition}\label{thm:f.2}
+	\color{blue}
+	Let $f\in \mathscr G$ satisfy $f(z) \asymp z^p(1-z)$ for $z\in [0,1]$. 
+	For every $\mathrm v\geq 0$, let $\mathrm x_{\mathrm v} \in C^2([0,\infty))$ be given by Proposition \ref{thm:f.1} with drift $f$ and speed $\mathrm v$. 
+	Then $\mathrm x_{\mathrm v}'(0) \lesssim \mathrm v^{-\frac{1+p}{1-p}}$ for large enough $\mathrm v$.
+\end{proposition}
+
+\begin{proposition}\label{thm:f.3}
+	\color{blue}
+Let $f\in \mathscr G$ satisfy $f(z) \asymp z^p(1-z)$ for $z\in [0,1]$. 
+For every $\mathrm v>0$, let $\mathrm x_{\mathrm v} \in C^2([0,\infty))$ be given by Proposition \ref{thm:f.1} with drift $f$ and speed $\mathrm v$. 
+Then $\mathrm x_{\mathrm v}'(0) \gtrsim \mathrm v^{-\frac{1+p}{1-p}}$ for large enough $\mathrm v$.
+\end{proposition}
+
+\begin{proof}[Proof of Proposition \ref{thm:S.2}]
+	Note that we are considering the traveling wave solution for \eqref{eq:S.1} where the corresponding drift $f(z) = z^p(1-z)$ for $z\in [0,1]$.
+	According to Proposition \ref{thm:f.1}, as long as $\varepsilon>0$ is small enough, there exists an $\mathrm v_\varepsilon$, such that the $\mathrm x\in C^2[0,\infty)$ given by Proposition \ref{thm:f.1} using $g = f$ and $\mathrm v=\mathrm v_\varepsilon$ satisfies that $\mathrm x'(0) = \varepsilon$.
+	We will show that such $\mathrm v_\varepsilon$ satisfies all the requirement of Proposition \ref{thm:S.2}. 
+	To do this, we construct 
+\begin{equation} \label{eq:f.1}
+	F(x) := \mathrm x(-x), \quad x\in \mathbb R,
+\end{equation}
+	where, again, $\mathrm x\in C^2[0,\infty)$ is given by Proposition \ref{thm:f.1} using $g = f$ and $\mathrm v=\mathrm v_\varepsilon$.
+	It is then trivial to see that $F$ is indeed a traveling wave solution to PDE \eqref{eq:S.1} with speed $\mathrm v_\varepsilon$ so that $F(-\infty):= \lim_{x\to -\infty} F(x) = 1$ and $F'(0-):= \lim_{x\uparrow 0}F'(x) = \varepsilon$.
+	To see such $F$ is unique, we use \eqref{eq:f.1} and the uniqueness of $\mathrm x$ from Proposition \ref{thm:f.1}.
+	
+	According to Proposition \ref{thm:f.1}, there exists $\varepsilon_0>0$ such that $\varepsilon \mapsto \mathrm v_\varepsilon$ on $(0, \varepsilon_0)$ is strictly decreasing; and $\mathrm v_\varepsilon\uparrow \infty$ when $\varepsilon \downarrow 0$. 
+	Therefor we can apply Propositions \ref{thm:f.2} and \ref{thm:f.3} and get that there exists $\varepsilon_1>0$ such that
+\[
+	\varepsilon \asymp \mathrm v_\varepsilon^{-\frac{1+p}{1-p}}, \quad \varepsilon \in (0, \varepsilon_1). 
+	\qedhere
+\]  
+\end{proof}
+\section{Proof of Proposition \ref{thm:S.25}}
+{\color{blue} TBD}
+\section{Proof of Proposition \ref{thm:S.7}}
+	Let $\epsilon, \varepsilon, \mathrm v, \bar F, L, T$ and $u$ be given as in the condition of Proposition \ref{thm:S.7}. 
+	We will be considering the SPDE
+\begin{equation} \label{eq:T.1}
+\begin{cases}
+\partial_t v_{t,x} 
+=\Delta_x v_{t,x} + f(v_{t,x}) + \epsilon \sigma(v_{t,x}) \dot W^v_{t,x},
+& x < \mathrm v t,
+\\v_{t,x}
+= 0,
+& x\geq \mathrm v t.
+\end{cases}
+\end{equation}
+\begin{proposition} \label{thm:T.1}
+	Suppose that $v$ is a mild solution to the SPDE \eqref{eq:T.1} on some usual probability space $(\Omega, \mathcal G, \mathcal F=(\mathcal F_t)_{t\geq 0}, \mathrm P)$ with respect to some $\mathcal F$-white noise $W^v$.
+	Further suppose that $v$ is non-negative and has locally compact interface. 
+	Then it holds that
+	\begin{equation} \label{eq:T.2}
+	\begin{multlined}
+	A_t
+	:= - \int (v_{t,x}- v_{0,x}) + \iint_0^t f(v_{s,x}) \mathrm ds\mathrm dx +\epsilon \iint_0^t \sigma(v_{s,x}) W^v(\mathrm ds\mathrm dx),
+	\quad t\geq 0,
+	\end{multlined}
+	\end{equation}
+	is a non-decreasing stochastic process.
+	Moreover, almost surely, for any compactly supported smooth function $\phi$ on $\mathbb R_+\times \mathbb R$ it holds that,
+	\begin{equation}
+	\begin{multlined}
+	\int (\phi_{t,x} v_{t,x} - \phi_{0,x}v_0) \mathrm dx
+	=  \iint_0^t v_{s,x}(\partial_s \phi_{s,x} + \partial^2_x\phi_{s,x}) \mathrm ds \mathrm dx + {}
+	\\ \iint_0^t \phi_{s,x} \big( f(v_{s,x}) \mathrm ds \mathrm dx + \epsilon \sigma(v_{s,x})W(\mathrm ds\mathrm dx) - \delta_{\mathrm vs}(\mathrm dx) \mathrm d A_s\big).
+	\end{multlined}
+	\end{equation}
+\end{proposition}
+\begin{proof}
+	\color{blue}
+	TBD
+\end{proof}
+	
+\begin{proposition}\label{thm:T.2}
+	There exists a usual probability space $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P)$ on which $(v, W^v, (w^{(k)}, W^{(k)})_{k\in \mathbb N}, \bar u,W^{\bar u})$ is defined so that 
+\begin{enumerate}
+\item 
+	$\{W^v\} \cup \{W^{(k)}: k \in \mathbb N\}$ is a sequence of independent $\mathcal F$-white noise;
+\item 
+	$W^{\bar u}$ is a $\mathcal F$-white noise;
+\item 
+	$v$ is a mild solution to the SPDE \eqref{eq:T.1} with initial data $F=1\wedge \bar F$ and with respect to $\mathcal F$-white noise $W^v$; 
+\item 
+	$v$ is $[0,1]$-valued, and has locally compact interface;
+\item 
+	for each $k\in \mathbb N$, $w^{(k)}\in \mathscr P_\mathrm e$ is a non-negative random field satisfying that 
+\begin{align}
+	w^{(k)}_{t,x} = 0, \quad t\in [0,k-1], x\in \mathbb R,
+\end{align}	
+	and that, almost surely, for any $t\geq k-1$ and compactly supported smooth function $\phi$ on $\mathbb R_+ \times \mathbb R$,
+\begin{align} 
+\begin{multlined}
+\int \phi_{t,x}w^{(k)}_{t,x} \mathrm dx = \iint_{k-1}^t w^{(k)}_{s,x}(\partial_s \phi_{s,x} + \partial_x^2 \phi_{s,x}) \mathrm ds\mathrm dx + {}
+\\ \iint_{k-1}^t \phi_{s,x} \big(f^{(k)}_{s,x}\mathrm ds\mathrm dx + \epsilon \sigma^{(k)}_{s,x}W^{(k)}(\mathrm ds\mathrm dx) + \delta_{\mathrm vs}(\mathrm dx) \mathbf 1_{k-1<s\leq k} \mathrm d A_s\big),
+\end{multlined}
+\end{align}
+	where $A$ is given by \eqref{eq:T.2}, and for each $t\geq 0, x\in \mathbb R$
+\begin{align} 
+	&  f_{t,x}^{(k)} 
+	:= |f(v_{t,x}+ w_{t,x}^{(k)} + w_{t,x}^{(k-1)}) - f(v_{t,x}+ w_{t,x}^{(k-1)})| \mathbf 1_{x\in (\mathrm v(k-1) - 1, \mathrm vk  + 1)}, 
+	\\ & (\sigma_{t,x}^{(k)})^2 
+	:= |\sigma^2(v_{t,x} + w^{(k)}_{t,x} + w^{(k-1)}_{t,x}) - \sigma^2 (v_{t,x} + w^{(k-1)}_{t,x})| \vee a^* w^{(k)}_{t,x},
+	\\&w^{(0)}_{t,x}
+	:= 0;
+\end{align}
+	\item $\bar u$ is a $[0,1]$-valued mild solution to SPDE \eqref{eq:M.1} with initial data $1\wedge \bar F$ and with respect to the $\mathcal F$-white noise $W^{\bar u}$;
+	\item it holds that
+	\begin{align} 
+	& \bar u_{t,x} \mathbf 1_{t\leq \tau} =  v_{t,x}\mathbf 1_{t\leq \tau} + \sum_{k\in \mathbb N}w^{(k)}_{t,x} \mathbf 1_{t\leq \tau}, \quad t\geq 0, x\in \mathbb R,
+	\end{align}
+	where the optional time $\tau:= T\wedge \min \{\tau_{k,i}: i \in \{1,2,3\}, k \in \mathbb N\}$ is defined using optional times $(\tau_{k,i})_{k\in \mathbb N, i = 1,2,3}$ given by
+	\begin{align} 
+	& \tau_{k,1} := \inf \{t \in (k-1,k+1]: \operatorname{supp} \{w^{(k)}_t\}\not \subset (\mathrm v(k-1) - 1, \mathrm vk + 1)\}, 
+	\\& \begin{multlined}
+	\tau_{k,2} := \inf \{t \in (k-1,k]:w^{(k)}_{t,x} + w^{(k-1)}_{t,x} + v_{t,x} > 1/2
+	\\\text{ for some } x\in (\mathrm v(k-2)-1, \mathrm vk + 1)\},
+	\end{multlined}
+	\\& \tau_{k,3} := \begin{cases}
+	\infty, &\quad \text{if } w^{(k)}_{k+1,\cdot} \equiv 0,
+	\\ k+1, & \quad \text{otherwise},
+	\end{cases}
+	\end{align} 
+	with the convention that the infumum of empty set is infinite.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}\label{thm:T.4}
+	Let $(\tau_{k,i})_{k\in \mathbb N, i = 1,2,3}$ be the optional times in the usual probability space $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P)$ given by Proposition \ref{thm:T.2}.
+	Then, it holds that
+	\begin{align} 
+	& \mathrm P \big( \tau_{k,i}= \infty, k \in \mathbb N \cap [1,T], i \in \{1,2,3\}\big) \geq \frac{1}{2}. 
+	\end{align}	
+\end{proposition}
+
+\begin{proof}[Proof of Proposition \ref{thm:S.7}]
+	\color{blue}
+	TBD
+\end{proof}
+
+\subsection{Proof of Proposition \ref{thm:T.1}}
+
+{\color{blue} TBD}
+
+\subsection{Proof of Proposition \ref{thm:T.2}}
+
+{\color{blue} TBD}
+
+\subsection{Proof of Proposition \ref{thm:T.4}} \label{sec:T.4}
+
+\begin{proposition} \label{thm:T.73}
+	Let $(\tau_{k,3})_{k\in \mathbb N}$ be the optional times in the usual probability space $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P)$ given by Proposition \ref{thm:T.2}.
+	Then, it holds that
+\[
+	\mathrm P(\tau_{k,3} < \infty) < ?
+\]
+\end{proposition}
+
+\subsubsection{Estimate for $\tau_{k,3}$}
+\begin{lemma} \label{thm:T.731}
+	Let $v$ be a mild solution to the SPDE \eqref{eq:T.1} with initial data $1\wedge\bar F$ with respect to an $\mathcal F$-white noise $W^v$ in a usual probability space $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P)$.
+	Let $(A_t)_{t\geq 0}$ be given by \eqref{eq:T.2}.
+	Then almost surely, $t\mapsto A_t$ is differentiable on $\mathbb R_+$. 
+	And for each $t\geq 0$, it holds that $\mathrm P[\dot A_t] \leq 2\varepsilon$ where $\dot A_t := \frac{\mathrm dA_t}{\mathrm dt}$.
+\end{lemma}
+\begin{proof}
+	\color{blue} TBD
+\end{proof}
+
+\begin{lemma} \label{thm:T.732}
+	Let $(v, W^v, (w^k, W^k)_{k\in \mathbb N})$ be given by Proposition \ref{thm:T.2} in the usual probability space $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P)$. 
+	Let $(A_t)_{t\geq 0}$ be given by \eqref{eq:T.2}.
+	For each $k\in \mathbb N$ and $t\in \mathbb R_+$, write \[B_t^{(k)} := \mathrm P\Big[\int w_{t,x}^{(k)}\mathrm dx\Big].\]  
+	Then for each $k\in \mathbb N$ and $t\in [k-1,k]$,
+\[
+	B_t^{(k)} \leq \|f\|_{C^{p}}(\mathrm v+2)^{1-p} \int_{k-1}^t  (B_s^{(k)})^p \mathrm ds + P[A_t - A_{k-1}],
+\]
+	where
+\begin{align} 
+& \|f\|_{C^p}:=  \sup_{x,y\in [0,1]} \frac{|f(x)- f(y)|}{|x-y|^p}.
+\end{align}
+\end{lemma}
+\begin{proof}
+	Note that 
+\begin{align} 
+		&\mathrm P\Big[\int w^k_{t,x} \mathrm dx\Big] 
+		\\&=\mathrm P \Big[\iint_{k-1}^t \big(f^k_{s,x}\mathrm ds\mathrm dx + \delta_{\mathrm vs}(\mathrm dx) \mathbf 1_{k-1<s\leq k} \mathrm d A_s\big)\Big], \quad t\in [k-1,k], x\in \mathbb R,
+		\\ &=  \iint_{k-1}^t \mathrm P[f^k_{s,x}]\mathrm ds\mathrm dx + \mathrm P[A_{t} - A_{k-1}].
+\end{align}
+	Note that 
+\begin{align} 
+	& f^k_{t,x} 
+	=  |f(v_{t,x}+ w_{t,x}^{k} + w_{t,x}^{k-1}) - f(v_{t,x}+ w_{t,x}^{k-1})| \mathbf 1_{x\in (\mathrm v(k-1) - 1, \mathrm vk  + 1)} 
+	\\&\leq \|f\|_{C^{0,p}}(w_{t,x}^k)^p\mathbf 1_{x\in (\mathrm v(k-1) - 1, \mathrm vk  + 1)}, \quad t\geq k-1, x\in \mathbb R.
+\end{align}
+	Therefore, 
+\begin{align}
+	&B_t^{(k)}:=\int \mathrm P[w^{(k)}_{t,x}] \mathrm dx 
+	\leq \|f\|_{C^{0,p}}\int_{\mathrm v(k-1) - 1}^{\mathrm vk  + 1} \int_{k-1}^t \mathrm P[(w_{s,x}^k)^p]\mathrm ds\mathrm dx + \mathrm P[A_{t} - A_{k-1}]
+	\\& \leq \|f\|_{C^{0,p}}(\mathrm v +2)\int_{k-1}^t \mathrm ds \int_{\mathrm v(k-1) - 1}^{\mathrm vk  + 1}  \mathrm P[(w_{s,x}^k)^p]\frac{1}{\mathrm v+2}\mathrm dx + \mathrm P[A_{t} - A_{k-1}]
+	\\&\leq \|f\|_{C^{0,p}}(\mathrm v +2)\int_{k-1}^t \mathrm ds \Big(\int_{\mathrm v(k-1) - 1}^{\mathrm vk  + 1} \mathrm P[w_{s,x}^k]\frac{1}{\mathrm v+2} \mathrm dx\Big)^p + \mathrm P[A_{t} - A_{k-1}]
+	\\&\leq \|f\|_{C^{0,p}}(\mathrm v+2)^{1-p} \int_{k-1}^t  B_s^p \mathrm ds + P[A_t - A_{k-1}]
+	\qedhere
+\end{align}
+\end{proof}
+
+\begin{lemma} \label{thm:T.733}
+	Suppose that $(b_t)_{t\geq 0}$ and $(a_t)_{t\geq 0}$ are absolutely continuous functions and $c>0$ and $C>0$. 
+	Suppose that
+	\begin{align} 
+	b_0 =0, \quad \dot a_t : = \frac{\mathrm da_t}{\mathrm dt}\leq c,
+	\quad b_t - b_s \leq C \int_s^t b_s^p \mathrm ds + a_t-a_s, \quad 0\leq s\leq t<\infty,
+	\end{align}
+	Then 
+\[
+	b_t \leq (C/c)^{-1/p}G\Big(c(C/c)^{1/p}t\Big), \quad t\geq 0,
+\]
+	where $G$ is given by
+\[
+	\int_0^{G(t)} \frac{1}{y^p+1}\mathrm dy= t, \quad t\geq 0.
+\]
+\end{lemma}
+\begin{proof}
+	We can see that
+\begin{align} 
+& \dot b_t \leq  C b_t^p + \dot a_t.
+\end{align}
+	Therefore 
+\begin{align} 
+& t = \int_0^t \mathrm ds \geq \int_{s\in [0,t]} \frac{1}{Cb_s^p + \dot a_s} \mathrm d b_s
+\geq \int_{s\in [0,t]} \frac{1}{Cb_s^p + c} \mathrm d b_s
+\\&= \frac{(c/C)^{1/p}}{c}\int_{s\in [0,t]} \frac{1}{\big((C/c)^{1/p}b_s\big)^p + 1} \mathrm d (C/c)^{1/p}b_s
+\end{align}
+	Therefore
+\begin{align} 
+& c(C/c)^{1/p} t\geq \int_{0}^{(C/c)^{1/p}b_t} \frac{1}{y^p + 1} \mathrm d y
+\end{align}
+	Therefore 
+\begin{align} 
+& b_t \leq (C/c)^{-1/p}G\Big(c(C/c)^{1/p}t\Big). \qedhere
+\end{align}
+\end{proof}
+	
+\begin{lemma} \label{thm:T.734}
+	Suppose that $W$ is a $\mathcal F$-white noise in a usual probability space $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P)$. 
+	Let $w$ be a mild solution to the SPDE
+	\begin{align} 
+	\partial_t w_{t,x} = \partial_x^2 w_{t,x} + f_{t,x} + \sigma_{t,x} \dot W_{t,x}, \quad t\geq 0, x\in \mathbb R,
+	\end{align}
+	where $f, \sigma\in \mathscr P_\mathrm e$. 
+	Suppose that $t_0, a,b, K$ and $\theta >0$ are (deterministic) constants such that
+\begin{align} \label{eq:T.41}
+& \{x\in \mathbb R: f_{t,x} \neq 0\} \subset [a, b], \quad 0\leq t\leq t_0, \quad {\rm a.s.}
+\end{align}
+	and, almost surely, for each $0\leq t\leq t_0$ and $x\in \mathbb R$
+\begin{align}
+	\label{eq:T.415}&|f_{t,x}| \leq K \sigma_{t,x}, 
+	\\ \label{eq:T.42}&\theta \sqrt{w_{t,x}} \leq \sigma_{t,x} 
+\end{align}
+	Then for any $r, q\in (1,\infty)$ with $r^{-1}+q^{-1} = 1$,
+\begin{align} 
+	& \mathrm P\Big(\int w_{t_0,x}\mathrm dx>0\Big) 
+	\leq e^{\frac{1}{2}(q-1)t_0(b-a)K^2}\theta^{-\frac{2}{r}} t_0^{-\frac{1}{r}} \mathrm P\Big[\int w_{0,x}\mathrm dx\Big]^{\frac{1}{r}}. 
+\end{align}
+\end{lemma} 
+\begin{proof}
+	Note that almost surely,
+\begin{equation} \label{eq:T.421}
+ \iint_0^\infty h_{s,y}^2\mathrm ds\mathrm dy 
+\overset{\eqref{eq:T.424}}= \iint_0^T \frac{f_{s,y}^2}{\sigma_{s,y}^2} \mathbf 1_{\sigma_{s,y}>0}\mathrm ds\mathrm dy
+\overset{\eqref{eq:T.41}}=  \int_{a}^b\int_0^T \frac{f_{s,y}^2}{\sigma_{s,y}^2} \mathbf 1_{\sigma_{s,y}>0}\mathrm ds\mathrm dy
+\overset{\eqref{eq:T.415}}\leq (b-a)TK^2,
+\end{equation}
+	where 
+	\begin{align}\label{eq:T.424}
+	h_{s,y} := \frac{f_{s,y}}{\sigma_{s,y}} \mathbf 1_{\sigma_{s,y}> 0} \mathbf 1_{s\leq T}, \quad s\geq 0, y \in \mathbb R.
+	\end{align}
+	Therefore, we have that
+\begin{equation} \label{eq:T.423}
+\mathrm P\Big[\exp\Big\{\frac{1}{2} \iint_0^\infty h_{s,y}^2\mathrm ds\mathrm dy\Big\}\Big]
+\overset{\eqref{eq:T.421}}\leq e^{STK^2}<\infty.
+\end{equation}
+	According to Lemma \ref{thm:WSI.1} and \eqref{eq:T.423}, we know that
+\begin{equation} \label{eq:T.425}
+\widetilde W_t(A) :=  W_t(A) + \iint_0^t  \mathbf 1_{y\in A} h_{s,y} \mathrm ds\mathrm dy, \quad t\geq 0, A\in \mathcal B_F(\mathbb R),
+\end{equation}
+	is an $\mathcal F$-white noise with respect to probability $\mathrm Q$ which is given by 
+\begin{align}	\label{eq:T.43}
+	\mathrm d\mathrm Q|_{\mathcal F_t} := \exp\Big\{-\iint_0^t h_{s,y} W(\mathrm ds\mathrm dy) - \frac{1}{2} \iint_0^t h^2_{s,y} \mathrm ds\mathrm dy\Big\} \mathrm d\mathrm P|_{\mathcal F_t}, \quad t\geq 0.
+\end{align}
+	We then claim that, under probability $\mathrm Q$, 
+\begin{equation}\label{eq:T.433}
+\begin{minipage}{0.9\textwidth}
+	$(w_{t,x})_{t\in [0,T], x\in \mathbb R}$ is the mild solution to SPDE
+	\[ 
+	\partial_t w_{t,x} = \partial_x^2 w_{t,x} +  \sigma_{t,x} \dot {\widetilde W}_{t,x}, \quad t\in [0,T], x\in \mathbb R.
+	\]
+\end{minipage}
+\end{equation}
+	Now using \cite[Lemma 8.1]{MuellerMytnikQuastel2011Effect} and \eqref{eq:T.42} we have
+\begin{align} \label{eq:T.435}
+& \mathrm Q\Big[\int w_{T,x}\mathrm dx > 0\Big] 
+\leq \theta^{-2} T^{-1} \mathrm Q\Big[\int w_{0,x}\mathrm dx\Big]
+\overset{\eqref{eq:T.43}}= \theta^{-2} T^{-1} \mathrm P\Big[\int w_{0,x}\mathrm dx\Big].
+\end{align}
+	Note that
+\begin{align}
+	&\frac{\mathrm d \mathrm P|_{\mathcal F_t}}{\mathrm d \mathrm Q|_{\mathcal F_t}}
+	\overset{\eqref{eq:T.43}}= \exp\Big\{\iint_0^t h_{s,y}W(\mathrm ds\mathrm dy)+ \frac{1}{2} \iint_0^t h_{s,y}^2 \mathrm ds\mathrm dy\Big\}
+	\\\label{eq:T.44}& \overset{\eqref{eq:T.425}}= \exp\Big\{\iint_0^t h_{s,y}\widetilde W(\mathrm ds\mathrm dy)- \frac{1}{2} \iint_0^t h_{s,y}^2 \mathrm ds\mathrm dy\Big\}
+	=: M_t^{(1)}, \quad t\geq 0.
+\end{align}
+	Also note that for each $q \in [1,\infty)$,
+\begin{equation}\label{eq:T.45}
+\begin{minipage}{0.8\textwidth}
+\[
+M^{(q)}_t:=\exp\Big\{q\iint_0^t h_{s,y} \widetilde W(\mathrm ds\mathrm dy)- \frac{q^2}{2}\iint_0^t h_{s,y}^2 \mathrm ds\mathrm dy\Big\}, \quad t\geq 0
+\]
+	is a martingale with respect to $\mathrm Q$.
+\end{minipage}
+\end{equation}
+	Therefore for any $r, q\in (1,\infty)$ with $r^{-1}+q^{-1} = 1$, we have
+\begin{align} 
+& \mathrm P\Big[\int w_{T,x} \mathrm dx > 0\Big] 
+\overset{\eqref{eq:T.44}}= \mathrm Q\Big[M_T^{(1)};\int w_{T,x} \mathrm dx > 0\Big]
+\\& \overset{\text{H\"older's inequality}}\leq \mathrm Q\big[\big(M_T^{(1)}\big)^q\big]^{\frac{1}{q}} \mathrm Q\Big[\int w_{T,x}\mathrm dx > 0\Big]^{\frac{1}{r}}
+\\& = \mathrm Q\Big[M_t^{(q)} e^{\frac{q^2 - q}{2}\iint_0^T h_{s,y}^2\mathrm ds\mathrm dy}\Big]^{\frac{1}{q}} \mathrm Q\Big[\int w_{T,x}\mathrm dx > 0\Big]^{\frac{1}{r}}b
+ \\& \overset{\eqref{eq:T.421}}\leq \mathrm Q[M_t^{(q)}]^{\frac{1}{q}} e^{(q-1)TSK^2} \mathrm Q\Big[\int w_{T,x}\mathrm dx > 0\Big]^{\frac{1}{r}} 
+\\&\overset{\eqref{eq:T.435},\eqref{eq:T.45}}\leq e^{\frac{1}{2}(q-1)(b-a)SK^2}\theta^{-\frac{2}{r}} T^{-\frac{1}{r}} \mathrm P\Big[\int w_{0,x}\mathrm dx\Big]^{\frac{1}{r}}.
+\end{align}
+\begin{proof*}[Proof of \eqref{eq:T.433}]
+	\color{blue} TBD
+\end{proof*}
+\end{proof}
+	
+	\begin{proposition} \label{thm:T.73}
+		Let $(\tau_{k,3})_{k\in \mathbb N}$ be the optional times in the usual probability space $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P)$ given by Proposition \ref{thm:T.2}.
+		Then, it holds that
+		\[
+		\mathrm P(\tau_{k,3} < \infty) < ?
+		\]
+	\end{proposition}
+
+\begin{proof}[Proof of Proposition \ref{thm:T.73}]
+	Fix an arbitrary $k\in \mathbb N$. 
+	Note that $(w^{(k)}_{t,x})_{t\geq k,x\in \mathbb R}$ is a mild solution to the SPDE
+\begin{align} 
+	& \partial_t w_{t,x}^{(k)}  
+	= \partial_x^2 w_{t,x}^{(k)} + f_{t,x}^{(k)} + \epsilon\sigma_{t,x}^{(k)} \dot W_{t,x}^{(k)}, 
+	\quad t\geq k, x\in \mathbb R.
+\end{align}
+	We claim that
+\begin{align} \label{eq:T.5}
+	& f^{(k)}_{t,x} 
+	\leq \sqrt{2}\|f\|_{C^p}\sigma^{(k)}_{t,x}, 
+	\quad t\geq 0, x\in \mathbb R.
+\end{align}
+	Then we can apply Lemma \ref{thm:T.734} to $(w^{(k)}_{k+t,x})_{t\geq 0, x\in \mathbb R}$ with $a = \mathrm v(k-1) - 1$, $b=\mathrm vk  + 1 $, $K =\sqrt{2}\|f\|_{C^p}/\epsilon$, $\theta =\epsilon/\sqrt{2}$ and $t_0 = 1$ to get that for any $r, q\in (1,\infty)$ with $r^{-1}+q^{-1} = 1$,
+\begin{align}
+	&\mathrm P\Big(\int w^{(k)}_{k+1,x}\mathrm dx>0\Big) 
+	\leq e^{\frac{1}{2}(q-1)t_0(b-a)K^2}\theta^{-\frac{2}{r}} t_0^{-\frac{1}{r}} \mathrm P\Big[\int w_{0,x}^{(k)}\mathrm dx\Big]^{\frac{1}{r}}
+	\\&= e^{(q-1)(\mathrm v+2) \|f\|_{C^p}^2/\epsilon^2}(2/\epsilon^2)^{\frac{1}{r}} \mathrm P\Big[\int w_{k,x}^{(k)}\mathrm dx\Big]^{\frac{1}{r}}
+	\\&\leq e^{(q-1)(\mathrm v+2) \|f\|_{C^p}^2/\epsilon^2}(2/\epsilon^2)^{\frac{1}{r}} \mathrm v^{\frac{1}{r}}.
+\end{align}
+\begin{proof*}[Proof of \eqref{eq:T.5}]
+\begin{align}
+& \frac{f^{(k)}_{t,x}}{\sigma^{(k)}_{t,x}} = \frac{|f(v_{t,x}+ w_{t,x}^{(k)} + w_{t,x}^{(k-1)}) - f(v_{t,x}+ w_{t,x}^{(k-1)})| \mathbf 1_{x\in (\mathrm v(k-1) - 1, \mathrm vk  + 1)}}{\sqrt{|\sigma(v_{t,x} + w^{(k)}_{t,x} + w^{(k-1)}_{t,x})^2 - \sigma(v_{t,x} + w^{(k-1)}_{t,x})^2| \vee (1/2) w^{(k)}_{t,x}}} 
+\\&\leq \frac{\|f\|_{C^p} (w_{t,x}^{(k)})^p}{\sqrt{(1/2) w_{t,x}^{(k)}}}
+\leq (1/2)^{-1/2}\|f\|_{C^p}. \qedhere
+\end{align}
+\end{proof*}
+\end{proof}
+
+\section{Proof of Proposition \ref{thm:S.8}} \label{sec:W}
+{\color{blue} TBD}
+\section{Other stuff}
+	{\tt (Z: I'm still working on this subsection)}
+\begin{lemma} \label{lem:W.02} 
+	Suppose that $\phi\in C^{1,2}([0,\infty) \times \mathbb R)$. 
+	Let $(s,x)\in [0,\infty) \times \mathbb R$. 
+	Let $(B_t)_{t\geq s}$ be a standard Brownian motion on $\mathbb R$, initiated at time $s$ and position $x$, defined in a usual probability  space $(\Omega, \mathcal G,\mathcal F = (\mathcal F_t)_{t\geq s}, \Pi_{s,x})$. 
+	Let $\tau \geq s$ be a $\mathcal F$-optional time such that 
+\begin{equation} \label{eq:W.03} 
+	\Pi_{s,x}\left[\left(\int_s^\tau \phi'(r,B_r)^2 dr\right)^{1/2}\right] < \infty.
+\end{equation}
+	Then it holds that
+\[
+	\phi(s,x) = \Pi_{s,x} \left[\phi(\tau, B_{\tau})-\int_s^{\tau} \left(\dot \phi + \frac{1}{2} \phi''\right)(r,B_r) \mathrm dr\right].
+\]
+\end{lemma}
+\begin{proof}
+	We use Ito's formula \cite[Theorem 3.3 and Remark 1 on p.~147]{RevuzYor1999Continuous} to derive that almost surely for each $t\geq s$,
+\begin{align} \label{eq:W.04}
+	&\phi(t, B_t) - \phi(s,B_s)
+	\\&\overset{\text{Ito's formula}}= \int_s^t\dot \phi(r,B_r) dr + \int_s^t \phi'(r, B_r)d B_r + \frac{1}{2} \int_s^t \phi''(r, B_r) d \langle B\rangle_r.
+\end{align} 
+	Note that according to \eqref{eq:W.03} and \cite[Corollary 17.8]{Kallenberg2002Foundations},
+\begin{equation}
+	t
+	\mapsto \int_s^{t\wedge \tau} \phi'(r,B_r) d B_r, \quad t\geq s,
+\end{equation}
+	is a uniform integrable martingale. 
+	The desired result then follows by taking $t = \tau$ in \eqref{eq:W.04}, and then taking expectation with respect to $\Pi_{s,x}$.
+\end{proof}
+
+	
+
+\begin{lemma} \label{thm:W.044}
+	Suppose that $\phi \in C^{1,2}([0,\infty)\times \mathbb R)$. 
+	Let $\psi \in C([0,\infty) \times \mathbb R, [0,\infty))$ be given by $\dot \phi= - \Delta\phi /2 + \epsilon^2\phi^2/2 - \psi$.
+	Let $(s,x) \in [0,\infty) \times \mathbb R$.
+	Let $(w, W)$ be a pair on $(s, \infty) \times \mathbb R$ defined in a usual probability space $(\Omega, \mathcal G, (\mathcal F_t)_{t\geq s}, \mathrm P_{s,\delta_x})$ satisfies that almost surely for any $\varphi \in C^2(\mathbb R)$ and $t > s$, 
+\begin{equation}
+	\int (\varphi w_t ) - \varphi(s,x) 
+	= \epsilon W_{s,t} [\varphi \sqrt{w}]  + \frac{1}{2}\iint_s^t (\varphi'' w).
+\end{equation}
+	Let $\tau > s$ be a $\mathcal F$-optional time such that $\|\iint_s^\tau [\phi^2 w]\|_{L^2(\mathrm P_{s,\delta_x})} < \infty$.
+	Then it holds that
+\[
+	\phi(s,x) = - \log \mathrm P_{s, \delta_x} \left[e^{- \int [w_\tau\phi_\tau] - \iint_s^\tau [w \psi]  }\right].
+\]
+\end{lemma}
+\begin{proof}
+
+	We first observe that if we define
+\begin{align}
+	M_t:=\phi(s,x) +\iint_s^t [\dot \phi w] + \epsilon W_{s,t}[\phi \sqrt{w}] + \frac{1}{2} \iint_s^t (\phi'' w) + \iint_s^t [w \psi]
+\end{align}
+	then we have $\mathbb P_{s,\delta_x}$ almost surely for any $t>s$,
+\begin{equation}
+	M_t= \int [w_{t} \phi_{t}] + \iint_s^t [w \psi].
+\end{equation}
+	{\tt This observation is true, since we can verify it when $\phi(t,x) = a(t) b(x)$ for some smooth function $a$ on $(s,\infty)$ and $b$ on $\mathbb R$; and that the linear combination of those function is dense in $C^{1,2}([0,\infty) \times \mathbb R)$. }
+	Therefore, we have
+\[
+	\langle M\rangle_{s,t} = \epsilon^2 \iint_s^t [\phi^2 w], \quad t\geq s.
+\]
+	Now, we have that
+\begin{align}
+	& e^{- M_t}
+	\overset{\text{Ito's formula}}= e^{- M_s}+  M_{s,t}[-e^{-M}] + \frac{1}{2} \langle M \rangle_{s,t}[e^{-M}]
+	\\& \begin{multlined}
+	=  e^{- M_s}+  \iint_s^t [-e^{-M}\dot \phi w] + \epsilon W_{s,t}[-e^{-M}\phi \sqrt{w}] 
+	\\+ \frac{1}{2} \iint_s^t (-e^{-M}\phi'' w) + \iint_s^t [-e^{-M}w\psi]+ \frac{\epsilon^2}{2} \iint_s^t [e^{-M}\phi^2 w]
+	\end{multlined}
+	\\& = e^{- M_s} - \epsilon W_{s,t}[e^{-M}\phi \sqrt{w}].
+\end{align}
+	Noting that $t \mapsto W_{s,t\wedge \tau}[-e^{-M}\phi \sqrt w ]$ on $[s, \infty)$ is a uniform integrable martingale ( $\|\iint_s^\tau [\phi^2 w]\|_{L^2(\mathrm P_{s,\delta_x})} < \infty$ and \cite[Corollary 17.8]{Kallenberg2002Foundations}), so we have 
+\begin{equation}
+	\phi(s,x) 
+	= -\log\mathrm P_{s, \delta_x} [e^{- M_{\tau}}].
+\qedhere
+\end{equation}
+\end{proof}
+\begin{lemma}
+	Let $b\in \mathbb R$, $\epsilon > 0$ and $t>0$. 
+	Let $\psi(s,x):= \tilde \psi (x)$ for $s\geq 0$ and $x\in \mathbb R$ where $\tilde \psi \in C(\mathbb R, [0,\infty))$ and $\{x\in \mathbb R:\tilde \psi(x) >0\} \subset (b,\infty)$.
+	Let $\phi \in C^{1,2}([0,t]\times \mathbb R)$ be such that
+\begin{equation}
+	\partial \phi = - \frac{1}{2}\Delta\phi + \frac{1}{2}\epsilon^2 \phi^2 - \psi; \quad \phi_t \equiv 0.
+\end{equation}
+	Then $\phi \leq \zeta$ on $[0,t] \times \mathbb R$ where
+	\[
+	\zeta(s,x) = 
+	\begin{cases}
+	\frac{6}{\epsilon^2 (x-b)^2}, & s\geq 0,x\in (-\infty, b),
+	\\ \infty, & s\geq 0, x\in [b, \infty).
+	\end{cases}
+	\]
+\end{lemma}
+\begin{proof}
+	For any $\epsilon>0, b\in \mathbb R$ and $h >0$, let us define $\zeta^{\epsilon, b,h} \in C^{2,1}([0,\infty) \times \mathbb R)$ such that for any $s\in [0,\infty)$,
+\[
+	\zeta^{\epsilon, b,h}(s,x) = 
+	\begin{cases}
+		\frac{6}{\epsilon^2 (x-b)^2}, & x\in (-\infty, b-h],
+		\\ \text{smooth, non-negative and finite,} & x\in (b-h, b),
+		\\ \frac{6}{\epsilon^2 h^2}, & x\in [b, \infty).
+	\end{cases}
+\]
+	Let us also define 
+\begin{equation} \label{eq:W.045}
+	\psi^{\epsilon, b, h} : = - \partial \zeta^{\epsilon, b,h} - \frac{1}{2}\Delta \zeta^{\epsilon, b,h} + \frac{\epsilon^2}{2} (\zeta^{\epsilon, b,h})^2, \quad \text{on } [0,\infty)\times \mathbb R, \quad \epsilon>0, b \in \mathbb R, h > 0.
+\end{equation}
+	Then we can verify that for each $\epsilon> 0$, $b \in \mathbb R$ and $h > 0$, we have on $[0, \infty)\times (-\infty,b-h)$
+\begin{align}
+	&\psi^{\epsilon, b, h}
+	=  - \frac{1}{2} \Delta \zeta^{\epsilon, b} + \frac{\epsilon^2}{2} (\zeta^{\epsilon,b})^2 
+	= - \frac{(-2)(-3) 6}{2\epsilon^2 (x-b)^4} + \frac{\epsilon^2 6^2}{2\epsilon^4 (x-b)^4} 
+	=0,
+\end{align}
+	and on $[0,\infty) \times (b, \infty)$
+\begin{equation}
+	\psi^{\epsilon, b, h} = \frac{\epsilon^2}{2} (\zeta^{\epsilon,b})^2 = \frac{\epsilon^2}{2}\frac{1}{h^2}.
+\end{equation}
+	{\tt We can also verify that $\psi^{\epsilon, b , h} \geq 0$.}
+	Therefore for any $\epsilon > 0$ and $b \in \mathbb R$,
+\begin{equation}
+	\widetilde {\psi^b}:=\liminf_{h\to 0} \psi^{\epsilon, b, h} = 0 \cdot \mathbf 1_{[0,\infty) \times (-\infty, b]} + \infty \cdot \mathbf 1_{[0,\infty)\times (b, \infty)}, \quad \text{a.e. on $[0,\infty) \times \mathbb R$}.
+\end{equation}
+
+	According to \eqref{eq:W.045} and Lemma \ref{thm:W.044} we know for any $\epsilon > 0, b \in \mathbb R, h > 0$ and $s\geq 0, x < b$,
+\begin{align} \label{eq:W.046}
+	&\zeta^{\epsilon, b , h}(s,x) = - \log \mathrm P_{s, \delta_x} \left[e^{- \int [w_t\zeta^{\epsilon, b , h}_t] - \iint_s^t [w \psi^{\epsilon, b, h}]  }\right]
+	\geq - \log \mathrm P_{s, \delta_x} \left[e^{- \iint_s^t [w \psi^{\epsilon, b, h}]  }\right].
+\end{align}
+	{(\tt Here is a uniform integrable condition I need to verify.)}
+	Taking $h \to 0$ on the both side of \eqref{eq:W.046} we get
+\begin{align}
+	&\zeta^{\epsilon, b}(s,x) \geq \liminf_{h\to 0} (- \log \mathrm P_{s,\delta_x} [e^{- \iint_s^t [w\psi^{\epsilon, b, h}]}]) = -\log \limsup_{h\to 0} \mathrm P_{s,\delta_x} [e^{- \iint_s^t [w\psi^{\epsilon, b, h}]}]
+	\\& \overset{\text{Reverse Fatou's Lemma}} \geq - \log \mathrm P_{s,\delta_x} [e^{- \liminf_{h\to 0} \iint_s^t[w\psi^{\epsilon, b, h}]}]
+	\\& \overset{\text{Fatou's Lemma}} \geq - \log \mathrm P_{s,\delta_x} [e^{- \iint_s^t[w\widetilde{\psi^b}]}]
+	\\& \geq - \log \mathrm P_{s,\delta_x} [e^{- \iint_s^t[w \lambda \psi^b]}], \quad \lambda \geq 0,
+	\\& = - \log \mathrm P_{s,\delta_x} [e^{-\int w_t \phi^{\epsilon, b, \lambda, t}_t - \iint_s^t[w \lambda \psi^b]}] = \phi^{\epsilon, b, \lambda,t}(s,x).
+	\qedhere
+\end{align}
+\end{proof}
+\begin{lemma}
+	Let $b\in \mathbb R$, $\epsilon > 0$ and $t>0$. 
+	Let $\psi(s,x):= \tilde \psi (x)$ for $s\geq 0$ and $x\in \mathbb R$ where $\tilde \psi \in C(\mathbb R, [0,\infty))$ and $\{x\in \mathbb R:\tilde \psi(x) >0\} \subset (b,\infty)$.
+	Let $\phi \in C^{1,2}([0,t]\times \mathbb R)$ be such that
+	\begin{equation}
+	\partial \phi = - \frac{1}{2}\Delta\phi + \frac{1}{2}\epsilon^2 \phi^2 - \psi; \quad \phi_t \equiv 0.
+	\end{equation}
+	Then $\phi \leq \zeta$ on $[0,t] \times \mathbb R$ where
+	\begin{equation} \label{eq:W.047}
+	\zeta(s,x) = 
+	\begin{cases}
+	\frac{40 (t-s)^{1/2}}{\epsilon^2 (b-x)^3} e^{- \frac{(b-x)^2}{8(t-s)}}, & s\geq 0,x\in (-\infty, b),
+	\\ \infty, & s\geq 0, x\in [b, \infty).
+	\end{cases}
+	\end{equation}
+\end{lemma}
+\begin{proof}
+	Let $\tau_y = \inf \{r: B_r > y\}$ where $y \in (-\infty, b)$.
+	Then for any $s \in [0,t]$ and $x < y$, 
+\begin{align}
+	&\phi(s,x) \overset{?}= \Pi_{s,x}\left[ \phi (\tau_y \wedge t, B_{\tau_y \wedge t}) - \int_s^{\tau \wedge t} (\partial \phi + \frac{1}{2} \Delta \phi)(r,B_r) dr\right]
+	\\& = \Pi_{s,x}\left[ \phi (\tau_y \wedge t, B_{\tau_y \wedge t}) - \int_s^{\tau_y \wedge t} (\frac{1}{2}\epsilon^2 \phi^2 - \psi )(r,B_r) dr\right]
+		\\& = \Pi_{s,x}\left[ \phi (\tau_y \wedge t, B_{\tau_y \wedge t}) - \int_s^{\tau_y \wedge t} (\frac{1}{2}\epsilon^2 \phi^2 )(r,B_r) dr\right]
+		\\& \leq \Pi_{s,x}[ \phi (\tau_y \wedge t, B_{\tau \wedge t})]
+		\leq \Pi_{s,x}[ \zeta (\tau_y \wedge t, B_{\tau \wedge t})]
+		= \Pi_{s,x}\left[\frac{6}{\epsilon^2(y - b)^2};\tau_y<t\right]
+		\\& = \frac{6}{\epsilon^2(y - b)^2} \Pi_{0,0}[\tau_{y-x} < t-s]
+		\overset{\text{Reflecting Principle}}=\frac{12}{\epsilon^2(y - b)^2} \Pi_{0,0}[B_{t-s} \geq y-x]
+		\\& = \frac{12}{\epsilon^2(y - b)^2} \int_{y-x}^\infty \frac{1}{\sqrt{2\pi(t-s)}} e^{- \frac{z^2}{2(t-s)}} dz
+		\leq \frac{12}{\epsilon^2(y - b)^2} \int_{y-x}^\infty \frac{1}{\sqrt{2\pi(t-s)}} \frac{z}{y-x}e^{- \frac{z^2}{2(t-s)}} dz
+		\\& \leq \frac{6}{\epsilon^2(y - b)^2(y-x)} \frac{2(t-s)}{\sqrt{2\pi(t-s)}} e^{ - \frac{(y-x)^2}{2(t-s)}}.
+\end{align}
+	{\tt Z: In the first step, there is a condition I need to verify.}
+	Because of this, we have that
+\begin{align}
+	&\phi(s,x) \leq \inf_{y\in (x,b)}\frac{6}{\epsilon^2(y - b)^2(y-x)} \frac{2(t-s)}{\sqrt{2\pi(t-s)}} e^{ - \frac{(y-x)^2}{2(t-s)}}
+	\\&\leq \frac{6}{\epsilon^2(\frac{x+b}{2}- b)^2(\frac{x+b}{2}-x)} \frac{2(t-s)}{\sqrt{2\pi(t-s)}} e^{ - \frac{(\frac{x+b}{2}-x)^2}{2(t-s)}}
+	\\& \leq \frac{6}{\epsilon^2(\frac{b-x}{2})^2(\frac{b-x}{2})} \frac{2(t-s)}{\sqrt{2\pi(t-s)}} e^{ - \frac{(\frac{b-x}{2})^2}{2(t-s)}}
+	\leq  \frac{40 (t-s)^{1/2}}{\epsilon^2 (b-x)^3} e^{- \frac{(b-x)^2}{8(t-s)}}. 
+	\qedhere
+\end{align}
+\end{proof}
+
+{\tt The following Lemma should be helpful for prove Proposition \ref{thm:S.8}}
+\begin{lemma}
+	Let $\epsilon > 0$.
+	Suppose $(w,W)$ is a solution pair defined in a usual probability space $(\Omega, \mathcal G,\mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P) $ satisfying that for any $\phi\in C^2(\mathbb R)$ and $t\geq 0$ almost surely
+	\begin{equation}\label{eq:W.048}\begin{multlined}
+	\int \phi w_t
+	= \frac{1}{2}\iint_0^t (w\Delta \phi) + \epsilon W_t(\phi\sigma) + \mu_t(\phi )
+	\end{multlined}\end{equation}
+	where $\sigma$ is a predictable locally bounded random field, and $\mu$ is a random measure on $[0,\infty) \times\mathbb R$.
+	Suppose that there exists an $\theta > 0$ satisfy that almost surely $\sigma \geq \theta \sqrt{w}$ on $[0,\infty) \times \mathbb R$.
+	Then we have that
+\begin{align}
+	\mathrm P( \rho_b < T) \leq \mathbb P [\mu_T(\zeta) ]
+\end{align}
+	where $\zeta$ is given by  \eqref{eq:W.047} with $\epsilon$ replaced by $\epsilon \theta$ and 
+	\[\rho_b := \inf\Big\{t\geq 0: \iint\limits_{[0,t]\times [b, \infty)}  w > 0\Big\}.\]
+\end{lemma}
+\begin{proof}
+	{\tt we pretend $f = 0$ in this proof.}
+	First note that (?) \eqref{eq:W.048} can be reformulated as the following: 
+	for any $t\geq 0$, $\phi \in C([0,t], \mathscr S(\mathbb R))$ almost surely it holds that 
+\begin{equation} \label{eq:W.05}\begin{multlined}
+	\int w_t\phi_t  = \iint_0^t \left(w\frac{1}{2}\Delta\phi + f \phi + w \dot \phi\right) + \epsilon W_t(\phi\sigma) + \mu_t(\phi).
+\end{multlined} \end{equation}
+	Fix a non-negative $\psi \in L^1(\mathbb R) \cap C(\mathbb R)$ such that $\{x\in \mathbb R: \psi(x)>0\}=(b, \infty)$.
+	For any $\lambda > 0$, let $\phi = \phi^{\lambda} \in C^{1,2}([0,T] \times \mathbb R)$ be given such that
+\begin{equation} \label{eq:W.06}
+	\dot \phi =- \frac{1}{2}\Delta \phi+  \frac{1}{2}(\epsilon\theta \phi)^2  - \lambda \psi \quad \text{on~} [0,T]\times \mathbb R; \quad \text{and~} \phi_T \equiv 0.
+\end{equation}	
+	For any $\lambda > 0$, define a process $M=M^{\lambda}$ by
+\begin{equation} \label{eq:W.1}
+	M_s
+	= \int (w_s \phi_s) + \lambda \iint_0^s (w \psi), 
+	\quad s \in [0,T].
+\end{equation}
+	Then we get that for any $\lambda > 0$ almost surely for all $s\in [0,T]$,
+\begin{equation} \label{eq:W.2}
+	M_s
+	\overset{\eqref{eq:W.05}, \eqref{eq:W.1}}= \lambda \iint_0^s (w \psi) + \iint_0^s (w\frac{1}{2}\Delta\phi + f\phi + w \dot \phi) + \epsilon W_s(\sigma\phi) + \mu_s(\phi).
+\end{equation}
+	Therefore, for any $\lambda > 0$, we have almost surely for all $s\in [0,T]$,
+\begin{equation} \label{eq:W.3}
+	\langle M \rangle_s
+	\overset{\eqref{eq:W.2}}= \epsilon^2 \iint_0^s (\sigma \phi)^2.
+\end{equation}
+	Now, for any $\lambda > 0$ we get almost surely for any $s\in [0,T]$,
+\begin{align}
+	& e^{-M_s} 
+	\overset{\text{Ito's formula}}= e^{- M_0} + M_s(-e^{-M}) + \frac{1}{2} \langle M\rangle_s( e^{-M}) 
+\\&\begin{multlined}
+	\overset{\eqref{eq:W.2}, \eqref{eq:W.3}}= 1 +  \iint_0^s \left((-e^{- M}) (\lambda w \psi +w \frac{1}{2} \Delta\phi + f \phi + w\dot \phi)\right)
+	\\ \qquad  \qquad + \epsilon W_s(-e^{-M}\sigma\phi) + \mu_s(- e^{-M} \phi )+ \frac{1}{2}\epsilon ^2 \iint_0^s \left(e^{-M} \sigma^2\phi^2 \right)
+\end{multlined}
+\\&\begin{multlined}
+	\label{eq:W.4}\overset{\eqref{eq:W.06}}= 1 + \iint_0^s (-e^{- M} f\phi ) + \frac{\epsilon^2}{2} \iint_0^s \left(e^{-M} \phi^2\right) (\sigma^2 - \theta^2 w)
+	\\ \qquad  \qquad + \mu_s(- e^{- M}\phi) + \epsilon W_s(-e^{-M^\lambda}\sigma \phi).
+\end{multlined}
+\end{align}
+	Note we have that
+\begin{align}
+	&\mathbb P(\rho_b < T) \leq \mathbb P\Big(\iint\limits_{[0,T]\times [b, \infty)} w > 0 \Big)
+	= \mathbb P\left(\iint_0^T (w \psi)> 0 \right)
+	\\ &= \lim_{\lambda \to \infty} \mathbb P \left( 1 - e^{- \lambda\iint_0^T (w \psi) }\right) 
+	= \lim_{\lambda \to \infty} \mathbb P\left( 1 - e^{- M_T^\lambda }\right).
+\end{align}
+	Note we also have for any $\lambda >0$ that
+\begin{align}
+	&\mathbb P( 1 - e^{- M_T }) = \mathbb P \Big[\iint_0^T (e^{- M} f\phi ) +\frac{\epsilon^2}{2} \iint_0^T \left(e^{-M} \phi^2\right) ( \theta^2 w - \sigma^2) + \mu_T (e^{-M}\phi)\Big]
+	\\& \leq \mathbb P \Big[\iint_0^T (e^{- M} f\phi ) + \mu_s(e^{-M}\phi)\Big]
+	\leq \mathbb P \Big[\iint_0^T (f\phi ) + \mu_T(\phi)\Big]
+	\\& \leq \mathbb P \Big[\iint_0^T (f\zeta ) + \mu_T(\zeta)\Big].
+\end{align}
+\end{proof}
+
+\begin{lemma}
+	Let $\epsilon > 0$.
+	Suppose $(w,W)$ is a solution pair defined in a usual probability space $(\Omega, \mathcal G,\mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P) $ satisfying that for any $\phi\in C^2(\mathbb R)$ and $t\geq 0$ almost surely
+	\begin{equation}\label{eq:W.048}\begin{multlined}
+	\int \phi w_t
+	= \frac{1}{2}\iint_0^t (w\Delta \phi) + \epsilon W_t(\phi\sigma) + \mu_t(\phi )
+	\end{multlined}\end{equation}
+	where $\sigma$ is a predictable locally bounded random field which is bounded $1$, and $\mu$ is a non-negative random measure on $[0,\infty) \times\mathbb R$.
+	Let $T>0, b \in \mathbb R$ be given.
+	Let $\tau := \inf\{t>0: \exists x>b/2\text{ s.t. } \sigma(t,x)< \theta \sqrt{w(t,s)}\}$.
+	Then we have that
+	\begin{align}
+	\mathrm P( \rho_b < T) \leq \mathbb P(\tau \leq T) + \frac{\epsilon^2(\theta^2 + 1)}{2} \iint\limits_{[0,T]\times ( \infty, b/2) }(\zeta^2) + \mathbb P[\mu_T(\zeta)]
+	\end{align}
+	where $\zeta$ is given by  \eqref{eq:W.047} with $\epsilon$ replaced by $\epsilon \theta$ and 
+	\[\rho_b := \inf\Big\{t\geq 0: \iint\limits_{[0,t]\times [b, \infty)}  w > 0\Big\}.\]
+\end{lemma}
+
+\begin{proof}
+	First note that \eqref{eq:W.048} can be reformulated as the following: 
+	for any $t\geq 0$, $\phi \in C([0,t], \mathscr S(\mathbb R))$ almost surely it holds that 
+	\begin{equation} \label{eq:W.05}\begin{multlined}
+	\int w_t\phi_t  = \iint_0^t (\frac{1}{2}w\Delta\phi + w \dot \phi ) + \epsilon W_t(\phi\sigma) + \mu_t(\phi).
+	\end{multlined} \end{equation}
+	Fix a non-negative $\tilde \psi \in L^1(\mathbb R) \cap C(\mathbb R)$ such that $\{x\in \mathbb R: \tilde \psi(x)>0\}=(b, \infty)$.
+	Set $\psi(t,x) = \tilde \psi (x)$ for each $t\geq 0, x\in \mathbb R$.
+	For any $\lambda > 0$, let $\phi = \phi^{\lambda} \in C^{1,2}([0,T] \times \mathbb R)$ be given such that
+	\begin{equation} \label{eq:W.06}
+	\dot \phi =- \frac{1}{2}\Delta \phi+  \frac{1}{2}(\epsilon\theta \phi)^2  - \lambda \psi \quad \text{on~} [0,T]\times \mathbb R; \quad \text{and~} \phi(T, \cdot)\equiv 0.
+	\end{equation}	
+	For any $\lambda > 0$, define a process $M=M^{\lambda}$ by
+	\begin{equation} \label{eq:W.1}
+	M_s
+	= \int (w_s \phi_s) + \lambda \iint_0^s (w \psi), 
+	\quad s \in [0,T].
+	\end{equation}
+	Then we get that for any $\lambda > 0$ almost surely for all $s\in [0,T]$,
+	\begin{equation} \label{eq:W.2}
+	M_s
+	\overset{\eqref{eq:W.05}, \eqref{eq:W.1}}= \lambda \iint_0^s (w \psi) + \iint_0^s (\frac{1}{2}w\Delta\phi + w \dot \phi) + \epsilon W_s(\sigma\phi) + \mu_s(\phi).
+	\end{equation}
+	Therefore, for any $\lambda > 0$, we have almost surely for all $s\in [0,T]$,
+	\begin{equation} \label{eq:W.3}
+	\langle M \rangle_s
+	\overset{\eqref{eq:W.2}}= \epsilon^2 \iint_0^s (\sigma \phi)^2.
+	\end{equation}
+	Now, for any $\lambda > 0$ we get almost surely for any $s\in [0,T]$,
+	\begin{align}
+	& e^{-M_s} 
+	\overset{\text{Ito's formula}}= e^{- M_0} + M_s(-e^{-M}) + \frac{1}{2} \langle M\rangle_s( e^{-M}) 
+	\\&\begin{multlined}
+	\overset{\eqref{eq:W.2}, \eqref{eq:W.3}}= 1 +  \iint_0^s \left((-e^{- M}) (\lambda w \psi +w \frac{1}{2} \Delta\phi + w\dot \phi)\right)
+	\\ \qquad  \qquad + \epsilon W_s(-e^{-M}\sigma\phi) + \mu_s(- e^{-M} \phi )+ \frac{1}{2}\epsilon ^2 \iint_0^s \left(e^{-M} \sigma^2\phi^2 \right)
+	\end{multlined}
+	\\&\begin{multlined}
+	\label{eq:W.4}\overset{\eqref{eq:W.06}}= 1 + \frac{\epsilon^2}{2} \iint_0^s \left(e^{-M} \phi^2\right) (\sigma^2 - \theta^2 w)
+	+ \mu_s(- e^{- M}\phi) + \epsilon W_s(-e^{-M^\lambda}\sigma \phi).
+	\end{multlined}
+	\end{align}
+	Let $\tau := \inf\{t>0: \exists x>b/2\text{ s.t. } \sigma(t,x)< \theta \sqrt{w(t,s)}\}$.
+	Note we have that
+	\begin{align}
+	&\mathbb P(\rho_b < \tau \wedge T) \leq \mathbb P\Big(\iint\limits_{[0,\tau \wedge T]\times [b, \infty)} w > 0 \Big)
+	= \mathbb P\left(\iint_0^{\tau \wedge T} (w \psi)> 0 \right)
+	\\ &= \lim_{\lambda \to \infty} \mathbb P \left( 1 - e^{- \lambda\iint_0^{\tau \wedge T} (w \psi) }\right) 
+	\leq \lim_{\lambda \to \infty} \mathbb P\left( 1 - e^{- M_{\tau \wedge T}^\lambda }\right).
+	\end{align}
+	Note we also have for any $\lambda >0$ that
+	\begin{align}
+	&\mathbb P( 1 - e^{- M_{\tau \wedge T} }) = \mathbb P \Big[\frac{\epsilon^2}{2} \iint_0^{\tau \wedge T} \left(e^{-M} \phi^2\right) ( \theta^2 w - \sigma^2) + \mu_{\tau \wedge T} (e^{-M}\phi)\Big]
+	\\& \leq \mathbb P \Big[\frac{\epsilon^2}{2}\iint\limits_{[0,\tau \wedge T]\times ( \infty, b/2) } (e^{- M} \phi^2 )(\theta^2 w - \sigma^2) + \mu_{\tau \wedge T}(e^{-M}\phi)\Big]
+	\\& \leq \frac{\epsilon^2(\theta^2 + 1)}{2} \iint\limits_{[0,T]\times ( \infty, b/2) }(\phi^2) + \mu_T(\phi)
+	\leq \frac{\epsilon^2(\theta^2 + 1)}{2} \iint\limits_{[0,T]\times ( \infty, b/2) }(\zeta^2) + \mathbb P [\mu_T(\zeta)].
+	\end{align}
+	Therefore,
+\begin{align}
+	&\mathbb P(\rho_b < T) = \mathbb P(\rho_b < T; \tau \leq T) + \mathbb P(\rho_b < T; \tau> T)  
+	\\&\leq \mathbb P(\tau \leq T) + \mathbb P(\rho_b <\tau \wedge T)
+	\\&\leq \mathbb P(\tau \leq T) + \frac{\epsilon^2(\theta^2 + 1)}{2} \iint\limits_{[0,T]\times ( \infty, b/2) }(\zeta^2) + \mathbb P[\mu_T(\zeta)].
+\end{align} 
+\end{proof}
+
+\begin{lemma}
+	Let $\epsilon > 0$.
+	Suppose $(w,W)$ is a solution pair defined in a usual probability space $(\Omega, \mathcal G,\mathcal F = (\mathcal F_t)_{t\geq 0}, \mathrm P) $ satisfying that for any $\phi\in C_c^2(\mathbb R)$ and $t\geq 0$ almost surely
+	\begin{equation}\label{eq:W.048}
+	\int \phi w_t
+	= \frac{1}{2}\iint_0^t (w\Delta \phi) + \epsilon W_t(\phi\sigma) + \mu_t(\phi ) + \iint_0^t (f\phi)
+	\end{equation}
+	where $\sigma$ is a predictable random field which is bounded $1$, and $\mu$ is a non-negative predictable random measure on $[0,\infty) \times\mathbb R$.
+	Let $T>0, b \in \mathbb R$ be given.
+	Let deterministic $\theta > 0$ be given so that $\sigma \geq  \theta \sqrt{w}$ on $[0,\infty) \times \mathbb R$ almost surely.
+	Then we have that
+	\begin{align}
+	\mathrm P( \rho_b < T) \leq \mathbb P[\mu_T(\zeta)]
+	\end{align}
+	where $\zeta$ is given by  \eqref{eq:W.047} with $\epsilon$ replaced by $\epsilon \theta$ and 
+	\[\rho_b := \inf\Big\{t\geq 0: \iint\limits_{[0,t]\times [b, \infty)}  w > 0\Big\}.\]
+\end{lemma}
+\begin{proof}
+	Define map 
+\[
+	\widetilde W: g \in \mathscr L^2_{{\rm loc}, T} \mapsto \Big\{W_t(g) - \iint_0^t \Big(- \frac{f}{\epsilon}g\Big): t\in (0,T]\Big\}. 
+\]
+	Then, we have for $\phi \in C_c^\infty(\mathbb R)$, $P$-almost surely, for $0 \leq t\leq T$, 
+\begin{align} \label{eq:W2.1}
+	\int \phi w_t
+	= \frac{1}{2}\iint_0^t (w\Delta \phi) + \epsilon \widetilde W_t(\phi\sigma) + \mu_t(\phi ).
+\end{align}
+	Define 
+\[
+	dQ := \exp\Big\{W_T(f) - \frac{1}{2 \epsilon^2}\iint_0^T (f^2)\Big\} \mathrm d P,
+\]
+	then under probability $Q$, $\widetilde W$ is a space-time white noise. 
+	Now we have that
+\[
+	Q[\rho_b < T] \leq Q[\mu_T(\zeta)].
+\]
+	Therefore
+\[
+	P[\rho_b < T] = Q[e^{(-\widetilde W)_T(f)}]
+\]
+\end{proof}
+
+The previous lemmas give probabilistic bounds on the first time a weak solution to \eqref{eq:W.048} reaches positive mass on the region $[b, \infty).$ Similar bounds with a modified version of $\zeta(s, x)$ in \eqref{eq:W.047} will give analogous results with the region $[b, \infty)$ replaced with $[b, 2b].$ However, these bounds require the noise of the corresponding SPDE $w$ to be large. That is, we must control the time the noise coefficient is less than $\theta\sqrt{w}$,
+\begin{align*}
+\inf\{t > 0: \sigma_w(t, x) < \theta\sqrt{w(t, x)} \text{ for some } x \in [b/2, \infty) \}
+\end{align*}
+when the noise coefficient is less than $\theta\sqrt{w}$, the first time the noise reaches below the threshold. We will consider the analogous problem of controlling this threshold time in the region $[b/2, 3b]$ instead, so we define
+\begin{align}
+\tau_b(\theta) = \inf\big\{t > 0: \sigma_w(t, x) < \theta\sqrt{w(t, x)} \text{ for some } x \in [b/2, 2b) \big\}.
+\end{align}
+Let $u$ be a solution to \eqref{eq:M.1} where the solution is written in mild form.
+We also consider a truncated drift version of $\eqref{eq:M.1}$ formally written
+\begin{align}\label{def:u_b}
+\partial_t u^b = \partial_{xx} u + f(u^b)\mathds{1}_{\{(-\infty, -3b) \cup (3b, \infty)\}}(x)+ \epsilon \sqrt{u^b(1-u^b)}\dot W.
+\end{align}
+(The process $u^b$ will be used as a stepping stone to prove results on $u.$)
+First, we note two rescaling lemmas.
+\begin{lemma}
+Let $u_t(x)$ be a solution to \eqref{eq:M.1} with some initial data $u_0(x)$. For any $\sigma > 0$, consider the process $v_t(x)$ defined by
+\[
+v_t(x) = u_{\sigma^{-4}t}(\sigma^{-2}x).
+\]
+Then $v$ is an SPDE that solves a mild form of the equation
+\[
+\partial_t v = \partial_{xx} v + \sigma^{-4}f(v) + \sqrt{v(1- v)}\dot{W}
+\]
+with the space-scaled initial data $v_0(x) = u_0(\sigma^{-2}x).$
+Furthermore, the rescaled noise term of $u$ in the mild form corresponds to the noise term in  $v.$
+\end{lemma}
+
+Similarly, if $u^b$ is a solution to \eqref{def:u_b}, then $v^b_t(x) := u^b_{\sigma^{-4}t}(\sigma^{-2}x)$ is a solution to 
+\[
+\partial_tv_t^b(x) = \partial_{xx}v^b + f(v_t^b)\mathds{1}_{\{(-\infty, -10b) \cup (10b, \infty)\}}(x) + \sqrt{v^b(1 - v^b)}\dot{W}
+\]
+
+\begin{proof}
+The proof follows from the rescaling properties of the heat-kernel and a change of variables. This is given in Section 4.1 in \cite{MuellerMytnikRyzhik2019TheSpeed}.
+\end{proof}
+
+\subsection{}
+
+\begin{lemma}\label{Lemma:BDG}
+Let $u$ be a solution to 
+\[
+\p_t u_t(x) = \p_{x}^2u_t(x) + f_t(x) + \e\sqrt{u(1-u)}\dot{W(dtdx).}
+\]
+With the mild form of the noise term given by \[
+N_t(x) = \int_0^t\int_\R G_{t - s}(x - y)\sqrt{u_s(y)(1-u_s(y))}W(dsdy).
+\]
+
+For any  $p \geq 2$, there is a $C(p) > 0$ such that
+\begin{align*}
+E(|N_t(x) - N_t(y)|^{2p}) &\leq  \e^{2p}C(p)(|x - y| \land t^{1/2})^{p-1}t^{1/2}\\
+&\times E\Big(\int_0^t\frac{1}{(t - s)^{1/2}}\int_\R (G_{t - s}(x - z) + G_{t - s}(y - z))u_s(z)dzds\Big)
+\end{align*}
+for all $t > 0, x, y \in \R.$
+Further assume that for a fixed $b > 0$, $\{x : f_{s, x} \neq 0 \text{ for some } s \leq t\} \subset B_b = (-\infty, -3b) \cup (3b, \infty).$
+Then,
+\begin{align}
+&E(|N_t(x) - N_t(y)|^{2p})\\
+&\leq \e^{2p}C(p)(|x - y| \land t^{1/2})^{p-1}t^{1/2}\int_\R(G_t(x - z) + G_t(y - z))(u_0(z) + t\|f\|_\infty \mathds{1}_{B_b}(z))dz.
+\end{align}
+Similarly, for $0 \leq s < t$,
+\begin{align}
+&E(|N_t(x) - N_s(x)|^{2p})\\
+&\leq \e^{2p}C(p)|t - s|^{(p-1)/2}t^{1/2}\int_\R(G_t(x - z) + G_t(y - z))(u_0(z) + t\|f\|_\infty \mathds{1}_{B_b}(z))dz.
+\end{align}
+
+\end{lemma}
+\begin{proof}
+We use the fact that
+\begin{align}
+\int_0^t\int_\R(G_{t - s}(x - z) - G_{t - s}(y - z))^2dzds \leq C(|x - y| \land t^{1/2}) \, \forall t > 0, x, y \
+\end{align}
+Burkholder's and Holder's inequality give
+\begin{align}
+\begin{split}
+E(|&N_t(x) - N_t(y)|^{2p}) \leq \e^{2p}C(p)E\left[\left(\int_0^t\int_\R(G_{t - s}(x - z) - G_{t - s}(y - z))^2u_s(z)(1 - u_z(z))dzds\right)^p\right]\\
+&\leq \e^{2p}C'(p)(|x - y| \land t^{1/2})^{p-1}E\left[\left(\int_0^t\int_\R(G_{t - s}(x - z) - G_{t - s}(y - z))^2u_s(z)(1 - u_z(z))dzds\right)\right]\\
+&\leq \e^{2p}C'(p)(|x - y| \land t^{1/2})^{p-1}\\
+&\times E\left[\left(\int_0^t\frac{1}{(t - s)^{1/2}}\int_\R|G_{t - s}(x - z) - G_{t - s}(y - z)|u_s(z)dzds\right)\right]\\
+&\leq \e^{2p}C'(p)(|x - y| \land t^{1/2})^{p-1}\\
+&\times E\left[\left(\int_0^t\frac{1}{(t - s)^{1/2}}\int_\R(G_{t - s}(x - z) + G_{t - s}(y - z))u_s(z)dzds\right)\right].\label{BDG1}
+\end{split}
+\end{align}
+And when $\{x : f_{s, x} \neq 0 \text{ for some } s \leq t\} \subset (-\infty, -3b) \cup (3b, \infty) =:$, for $x, y \in (b/2, 2b),$
+\begin{align}
+E (u_s(x)) &\leq G_s u_0(x) + E\left(\int_0^s\int_\R G_{s - r}(x-z)f_s(x)dsd\right)\\
+&\leq G_su_0(x) + \|f\|_{\infty}\int_0^s\int_{B_b}G_{s - r}(x-z)dzdr\\
+&\leq G_s u_0(x) + \|f\|_{\infty}\int_0^s\int_{B_b}G_s(x - z)dzdr.
+\end{align}
+We use the semi-group property of $G$, then substitute the above into the right hand of \eqref{BDG1}, to get
+\begin{align}
+E(&|N_t(x) - N_t(y)|^{2p}) \leq \e^{2p}C'(p)(|x - y| \land t^{1/2})^{p-1}\\
+&\times t^{1/2}\left(\int_\R (G_t(x - z) + G_t(y - z))u_0(z)dz + \|f\|_\infty\int_0^t\int_{B_b}(G_t(x - z) + G_t(y - z))dzds\right)\\
+&\leq \e^{2p}C'(p)(|x - y| \land t^{1/2})^{p-1}t^{1/2}\int_\R(G_t(x - z) + G_t(y - z))(u_0(z) + t\|f\|_\infty \mathds{1}_{B_b}(z))dz.
+\end{align}
+\end{proof}
+\begin{lemma}[Fluctuations of noise term]\label{lemma:Noise_Fluct}
+Consider the equation of $u^b$, $R(u_0) \leq 0,$ and write $u^b$ in the mild form
+\[
+u_t^b(x) = G_tu_0^b(z)\md x + \int_0^t\int_\R G_{t - s}(x-z)f(u_s^b(z))\mathds{1}_{(-\infty, -3b) \cup (3b, \infty)}(z)\md z \md s + N_t^b(x),
+\]
+where 
+\[
+N_t^b(x) = \e\int_0^t\int_\R G_{t - s}(x - z)\sqrt{u_s^b(z)(1 - u_s^b(z))}\, W(\md z, \md s)
+\]
+is the noise term in the mild representation. Then for all $t > 0$ there is a $C > 0$ such that for any $y, b > 0$
+\begin{align*}
+P&\Big(N_s^b(x) \geq y \text{ for some } s \leq t, x \in (b/2, 2b)\Big)\\
+&\leq C \e^{20}y^{-20}(t \lor t^{22})\cdot \int_\R\int_\R G_t(x - z)\Big(v_0^b(z) + t\|f\|_{\infty}\mathds{1}_{(-\infty, -3b) \cup (3b, \infty)}(z)\Big)\md z \mathds{1}_{(b/2, 2b)}(x)\md x
+\end{align*}
+\end{lemma}
+\begin{proof}
+The proof goes along the same lines as Lemma 3.1 in Tribe \cite{Tribe} which uses the inequalities in Lemma \ref{Lemma:BDG} with $p = 10.$
+\end{proof}
+
+\begin{proposition}\label{prop:tau_b_cutoff}
+Fix $t > 0$ and let $u^b$ the solution to \eqref{def:u_b} with $Ru_0^b \leq 0$, and 
+\[
+\tau_b(1/2) = \inf\{s > 0 : u^b_s(x) \geq 1/2 \text{ for some $x \in (b/2, 2b)$}\}.
+\] There are constants $C_1, C_2 > 0$ such that for any $b > C_2\sqrt{t}(t\|f\|_{\infty} \lor 1)$
+\begin{align*}
+P&\big(\tau_b(1/2) \leq t\big) \leq C_1(t \lor t^{22})b^{-2}\e^{20}\exp\Big(-\frac{b^2}{8t}\Big)
+\end{align*}
+where $\tau_b(1/2)$ is the stopping time associated to the process $u^b$ given by \eqref{def:u_b}.
+\end{proposition}
+\begin{proof}
+We write out the mild form for $u^b$,
+\[
+u_t^b(x) = G_tu_0^b(z)\md x + \int_0^t\int_\R G_{t - s}(x-z)f(u_s^b(z))\mathds{1}_{(-\infty, -3b) \cup (3b, \infty)}(z)\md z \md s + N_t^b(x).
+\]
+Notice that for $x \in (b/2, 2b)$, the range of the heat kernel values in the integrand is separated from zero, as $|x - z| \geq b/2.$ Using properties of the heat-kernel $G$, there is a constant $C_2$ such that for all
+$b > C_2\sqrt{t}(t\|f\|_\infty \lor 1)$, and $x \in (b/2, 2b)$,
+\[
+G_su_0^b(z) + \int_0^s\int_\R G_{s - r}(x-z)f(u_r^b(z))\mathds{1}_{(-\infty, -3b) \cup (3b, \infty)}(z)\md z \md r \leq 1/4
+\]
+for all $s \leq t.$
+Then by Lemma \ref{lemma:Noise_Fluct}
+\begin{align}
+P&\left(\tau_b(1/2) \leq t\right) = P\big(u_s(x) \geq 1/2 \text{ some $s \leq t, x \in (b, 2b)$} \big)\\
+&\leq P\big(N_s(x) \geq 1/4 \text{ for some $s \leq t, x \in (b, 2b)$} \big)\\
+&\leq \e^{20}4^{20}(t \lor t^{22})\cdot \int_\R\int_\R G_t(x - z)\Big(v_0^b(z) + t\|f\|_{\infty}\mathds{1}_{(-\infty, -3b) \cup (3b, \infty)}(z)\Big)\md z \mathds{1}_{(b/2, 2b)}(x)\md x.
+\end{align}
+Notice that the heat kernel is being integrated over a region separated from the origin. using the Gaussian estimate
+\[
+\int_y^\infty\exp(-x^2/2t)dx \leq \frac{t}{y}\exp(-y^2/2t),
+\]
+for $y > 0.$
+We get
+\begin{align}
+P&\left(\tau_b(1/2) \leq t\right) \leq \e^{20}4^{20}(t \lor t^{22}) \times \frac{C(t, \|f\|_\infty)}{b^2}\exp\left(-\frac{b^2}{8t}\right).
+\end{align}
+
+\end{proof}
+
+\begin{proposition}
+Let $u$ be a solution to 
+\[
+\p_t u = \p_x^2 u + f(u) + \e [u(1- u)]^{1/2}\dot{W},
+\]
+with $R\,u_0 \leq 0,$ and let
+\[
+\tau_b(1/2) = \inf\{s > 0 : u_s(x) \geq 1/2 \text{ for some $x \in (b/2, 2b)$}\}.
+\]
+\begin{align}
+P&\left(\tau_b(1/2) \leq t\right) \leq \e^{10}4^{10}(t \lor t^{22})^{1/2} \times \frac{(C(t, \|f\|_\infty))^{1/2}}{b}\exp\left(-\frac{b^2}{16t} + \frac{3K^2bt}{\e^2}\right)\label{eq:tau_b}.
+\end{align}
+
+\end{proposition}
+\begin{proof}
+We use Proposition \ref{prop:tau_b_cutoff} together with the Girsanov transform between the
+law $P$ of the solution $u$, and the law $Q$ of the solution $u^b$. So for a set $A_t \in \sigma(u_s : s \leq t)$
+\[
+P(A_t) = E_{u^b}\left(Z_t^{(1)} A_t\right)
+\]
+where
+\[
+Z_t^{(q)} = \exp \left\{q\int_0^t\int_\R\frac{f(u^b)\mathds{1}_{(-3b, 3b)}}{\e u^b(1 - u^b)}W(dx, ds) -\frac{q^2}{2}\int_0^t\int_\R\left(\frac{f(u^b)\mathds{1}_{(-3b, 3b)}}{\e u^b(1 - u^b)}\right)^2dxds\right\}
+\]
+is the Girsanov process which is a martingale under our assumptions. In fact, because $f(x) \leq x^p(1 - x)$ for some $p \in (1/2, 1]$, we see the term in the exponent controlling the expectation has the bound
+\begin{align}
+\int_0^t\int_\R\left(\frac{f(u^b)\mathds{1}_{(-3b, 3b)}}{\e u^b(1 - u^b)}\right)^2dxds &\leq \int_0^t \int_\R\frac{K^2(u^b)^{2p}(1 - u^b)^2\mathds{1}_{(-3b, 3b)}}{\e^2(u^b(1 - u^b))^2}dxds\\ 
+&\leq \int_0^t \int_\R\frac{K^2(u^b)^{2p - 2}\mathds{1}_{(-3b, 3b)}}{\e^2}dxds\\
+&\leq \frac{6K^2bt}{\e^2},
+\end{align}
+$u^b$ almost surely, using the fact that $u^b \in [0, 1].$
+It then follows that
+\begin{align}
+E\left(\big[Z_t^{(1)}\big]^2\right) &= E\left(Z_t^{(2)}\exp\left\{\int_0^t\int_\R\left(\frac{f(u^b)\mathds{1}_{(-3b, 3b)}}{\e u^b(1 - u^b)}\right)^2dxds\right\}\right)\\
+&\leq \exp\left\{\frac{6K^2bt}{\e^2}\right\}E(Z_t^{(2)}) =\exp\left\{\frac{6K^2bt}{\e^2}\right\}.
+\end{align}
+Using this bound, we use Schwarz's inequality with $A_t = \{\tau_b(1/2) \leq t\}$ to see 
+that
+\begin{align}
+P&\left(\tau_b(1/2) \leq t\right) \leq [E\left(Z_t^2\right)]^{1/2}\cdot [P_{u^b}\left(\tau_b(1/2) \leq t\right)]^{1/2}\\
+&\leq \e^{10}4^{10}(t \lor t^{22})^{1/2} \times \frac{(C(t, \|f\|_\infty))^{1/2}}{b}\exp\left(-\frac{b^2}{16t} + \frac{3K^2bt}{\e^2}\right)
+\end{align}
+(where $C(t, \|f\|_\infty) \approx \|f\|_\infty/t^{1/2}$.)
+\end{proof}
+
+\begin{corollary}
+\end{corollary}
+
+\appendix
+\section{}
+{\color{red}Testing HERE, Trying Another option.}
+\subsection{Girsanov transformation of Walsh's stochastic integral for white noise}
+Let $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, P)$ be a \emph{usual probability space}, i.e. (1) $(\Omega, \mathcal G, P)$ is a complete probability space; (2) $(\mathcal F_t)_{t\geq 0}$ is a family of $\sigma$-field on $\Omega$  such that for each $0\leq s\leq t<\infty$, $\mathcal N:= \{A\in \mathcal G: P(A) = 0\} \subset \mathcal F_s\subset \mathcal F_t \subset \mathcal G$.
+Denote by $\mathscr M_{\rm loc}$ the space of continuous local martingales.
+For any continuous semi-martingale $M$, denote by $\langle M \rangle$ its quadratic variation. 
+For any continuous semi-martingale $M, N$, denote by $\langle M, N\rangle$ their quadratic covariation.
+For more details, see \cite[Chapter 17]{Kallenberg2002Foundations}.
+
+We say $f$ is a \emph{random field} if it is a real-valued stochastic process indexed by $[0,\infty)\times \mathbb R$.
+We say a random field $f$ is progressive if it is $\mathcal P \times \mathcal B(\mathbb R)$-measurable where $\mathcal P$ is the progressive $\sigma$-field on $\Omega \times [0,\infty)$ with respect to the filtration $\mathcal F$.
+We say $f\in \mathscr L^2_{\rm loc}$ if it is a progressive random field on $\Omega$ such that
+\[
+\iint_0^t f^2_{s,y} \mathrm ds\mathrm dy < \infty, \quad t\geq 0, {\rm a.s.}
+\]
+
+Let $\mathcal B_F(\mathbb R)$ be the collection of Borel subsets of $\mathbb R$ whose Lebesgue measure are finite.
+We say $\{(W_s(A))_{A \in \mathcal B_F(\mathbb R),s\geq 0}; \mathrm P\}$ is an $\mathcal F$-white noise if it is a stochastic process indexed by $\mathcal B_F(\mathbb R)\times [0,\infty)$ such that 
+(1)  for disjoint $A,B\in \mathcal B_F(\mathbb R^d)$, almost surely, for each $t\geq 0$, $W_t(A\cup B) = W_t(A) + W_t(B)$; and
+(2) for any $A \in \mathcal B_F(\mathbb R)$, $t\mapsto W_t(A)$ is a Brownian motion such that for each $t\geq 0$, $\langle W(A) \rangle_t = t \operatorname{Leb}(A)$. 
+
+For an $\mathcal F$-white noise $W$, we say
+\begin{align} 
+& f \mapsto \iint_0^\cdot f_{s,y}W(\mathrm ds\mathrm dy) 
+\end{align}
+ is \emph{Walsh's stochastic integral for $W$} if it is a map from $\mathscr L_{\rm loc}^2$ to $\mathscr M_{\rm loc}$ such that (1) for any $f, g \in \mathscr L_{{\rm loc}}^2$ we have
+ \begin{align} 
+ &  \iint_0^t (f_{s,y} + g_{s,y}) W(\mathrm ds\mathrm dy) 
+ = \iint_0^t f_{s,y} W(\mathrm ds\mathrm dy) +  \iint_0^t g_{s,y} W(\mathrm ds\mathrm dy) , 
+ \quad t\geq 0, {\rm a.s.};
+ \end{align}  
+(2) for any $f\in \mathscr L_{{\rm loc}}^2$,  
+\begin{align}
+& \Big\langle \iint_0^\cdot f_{s,y}W(\mathrm ds\mathrm dy) \Big\rangle_t = \iint_0^t f^2_{s,y}\mathrm ds\mathrm dy, 
+\quad t\geq 0, {\rm a.s.};
+\end{align}
+and (3) for any $A \in \mathcal B_F(\mathbb R)$ and real-valued progressive process $h$ with 
+\begin{align} 
+& \int_0^t h_s^2 \mathrm ds < \infty, \quad t\geq 0, {\rm a.s.} 
+\end{align}
+it holds that 
+\begin{equation} \label{eq:WSI.5}
+\iint_0^t h_s \mathbf 1_{y\in A} W(\mathrm ds\mathrm dy) = \int_0^t h_s \mathrm d W_s(A), \quad t\geq 0, {\rm a.s.}
+\end{equation}
+where the right hand side of \eqref{eq:WSI.5} is Ito's stochastic integral for Brownian motion. 
+For any $\mathcal F$-white noise $W$, using the argument in \cite[Section II.5]{Perkins2002Dawson-Watanabe}, it can be verified that the Walsh's stochastic integral for $W$ exists and is unique.
+
+\begin{lemma} \label{thm:WSI.1}
+	Suppose that $W$ is a $\mathcal F$-white noise and
+\[ f\in \mathscr D^P:= \bigg\{h\in \mathscr L_{\rm loc}^2: \mathrm P\Big[\exp\Big\{\frac{1}{2} \iint_0^\infty h_{s,y}^2\mathrm ds\mathrm dy\Big\}\Big]< \infty\bigg\}
+\]\
+	Then 
+\[
+	\mathcal E_t^f
+	:= \exp\Big\{\iint_0^t f_{s,y}W(\mathrm ds\mathrm dy) - \frac{1}{2} \iint_0^t f_{s,y}^2 \mathrm ds\mathrm dy\Big\}, 
+	\quad t\geq 0
+\]
+	is a uniformly integrable martingale. 
+	Moreover, under probability $\mathrm Q$, which is given by $\mathrm d\mathrm Q =  \mathcal E_\infty^f \mathrm d \mathrm P$, the map 
+\begin{align} \label{eq:WSI.61}
+& g\in \mathscr L_{\rm loc}^2 \mapsto \iint_0^\cdot g_{s,y}W(\mathrm ds\mathrm dy)  - \iint_0^\cdot f_{s,y} g_{s,y} \mathrm ds\mathrm dy
+\end{align}
+	is Walsh's stochastic integral for the $\mathcal F$-white noise 
+\begin{align} \label{eq:WSI.62}
+& W_t(A) - \iint_0^t \mathbf 1_{y\in A}f_{s,y}\mathrm ds\mathrm dy, \quad t\geq 0, A \in \mathcal B_F(\mathbb R).  
+\end{align} 
+\end{lemma}
+\begin{proof}
+	According to \cite[Theorem 18.23]{Kallenberg2002Foundations}, we know that $(\mathcal E^f_t)_{t\geq 0}$ is a uniformly integrable martingale (under probability $\mathrm P$).
+	Therefore the probability $\mathrm Q$ is well-defined.
+	Fix an arbitrary $g\in \mathscr L_{\text{loc}}^2$. 
+	Let us write
+	\begin{equation} 
+	 \widetilde W_t(g):= \iint_0^t g_{s,y} W(\mathrm ds\mathrm dy) - \iint_0^t f_{s,y}g_{s,y} \mathrm ds\mathrm dy, \quad t\geq 0.
+	\end{equation} 
+	Then, it can be verified from \cite[Theorem 18.19~\& Lemma 18.21]{Kallenberg2002Foundations} that 
+\begin{equation} \label{eq:WSI.63}
+	\widetilde W(g) \in \mathscr M^\mathrm Q_{\rm loc},
+\end{equation} 
+	where $\mathscr M_{\rm loc}^\mathrm Q$ is the space of continuous local martingales with respect to probability $\mathrm Q$. 
+	It can also be verified from \cite[Theorem 18.20]{Kallenberg2002Foundations} that 
+\begin{equation}\label{eq:WSI.64}
+	\langle \widetilde W(g) \rangle_t^\mathrm Q = \iint_0^t  g_{s,y}\mathrm ds\mathrm dy, \quad t\geq 0,
+\end{equation}
+	where $\langle \cdot \rangle^\mathrm Q$ stands for the qudratic variation of semimartingales with respect to probability $\mathrm Q$.
+	Now with the help of \eqref{eq:WSI.63} and \eqref{eq:WSI.64}, we can verify that \eqref{eq:WSI.62} is indeed an $\mathcal F$-white noise (under probability $\mathrm Q$), and \eqref{eq:WSI.61} is the corresponding Walsh's stochastic integral.
+\end{proof}
+
+
+\subsection{Solution concepts for SPDEs} \label{sec:SPDE}
+For $s\geq 0$ and $y\in \mathbb R$, let $\{(B_t)_{t\geq s};\Pi_{s,y}\}$ be a Brownian motion with generator $\Delta$ initiated at time $s$ and position $y$.
+Then we have
+\[
+\int G_{s,y;t,x} \varphi_x\mathrm dx = \Pi_{s,y}[\varphi_{B_t}], \quad 0\leq s<t<\infty, y \in \mathbb R, \varphi \in \mathcal B_b(\mathbb R),
+\] 
+where
+\begin{align} 
+	G_{s,y;t,x} = \frac{e^{-\frac{(x-y)^2}{4(t-s)}}}{\sqrt{4\pi (t-s)}}, \quad 0\leq s < t< \infty, x,y\in \mathbb R.
+\end{align}
+Let $(\Omega, \mathcal G, \mathcal F = (\mathcal F_t)_{t\geq 0}, P)$ be a usual probability space.
+We say $\sigma \in \mathscr P_\mathrm e$ if $\sigma$ is a real-valued progressive random field on $\Omega$ such that, almost surely, for each $t\geq 0$, there exists $c>0$ such that for each $0\leq s\leq t$ and $y\in \mathbb R$,
+$  |\sigma_{s,y}| < ce^{c|y|}$.
+
+\begin{lemma} \label{thm:SC.4}
+	Suppose that $\sigma \in \mathscr P_\mathrm e$.
+	Then, almost surely, for each $t\geq 0$ and $x\in \mathbb E$,
+\begin{align} 
+&\int G_{0,y;t,x}\sigma_{0,y}\mathrm dy< \infty, \quad \iint_0^t G_{s,y;t,x} \sigma_{s,y}\mathrm ds\mathrm dy < \infty, \quad \iint_0^t  (G_{s,y;t,x}\sigma_{s,y})^2 \mathrm ds \mathrm dy < \infty.
+\end{align}
+\end{lemma}
+\begin{proof}
+	We will only verify the third inequality since the first two are only simpler.
+	Let's claim that for each $t\geq 0, x\in \mathbb R$ and $c\in \mathbb R$,
+\begin{align} \label{eq:SPDE.05}
+	& \iint_0^t G_{s,y;t,x}^2 e^{cy}\mathrm ds\mathrm dy < \infty.
+\end{align}
+	Now from $\sigma \in \mathscr P_\mathrm e$, we know that almost surely for each $t\geq 0$ there exists a $c>0$ such that for each $0\leq s\leq t$ and $y\in \mathbb R$,
+\begin{align} 
+&  \sigma_{s,y}^2 
+\leq  ce^{c|y|} 
+\leq ce^{cy} + ce^{-cy}.
+\end{align}
+Therefore, we can verify that almost surely for each $t\geq 0$ there exists a $c>0$ such that for $x\in \mathbb R$,
+\begin{align} 
+& \iint_0^t G_{s,y;t,x}^2 \sigma_{s,y}^2  \mathrm ds\mathrm dy 
+\leq  c\iint_0^t G_{s,y;t,x}^2 (e^{cy}+e^{-cy}) \mathrm ds\mathrm dy 
+\overset{\eqref{eq:SPDE.05}}< \infty.
+\end{align}
+\begin{proof*}[Proof of \eqref{eq:SPDE.05}]
+From Ito's formula, we know that $(e^{-cB_t -c^2t })_{t\geq 0}$ is a martingale.
+Therefore, we can verify that 
+\begin{align} 
+&  \iint_0^t  G_{s,y;t,x}^2  e^{cy}\mathrm ds \mathrm dy = e^{cx} \iint_0^t G^2_{0, 0; t-s, x-y} e^{-c(x-y)} \mathrm ds\mathrm dy
+\\ & = e^{cx} \iint_0^t G^2_{0, 0; r, z} e^{-cz} \mathrm dr\mathrm dz
+= e^{cx}\iint_0^t \frac{e^{-\frac{z^2}{2r}}}{4\pi r} e^{-cz}\mathrm dr\mathrm dz
+\\& = e^{cx} \int_0^t \frac{1}{2\sqrt{2\pi r}} \int \frac{e^{-\frac{z^2}{2r}}}{\sqrt{2\pi r}} e^{-cz} \mathrm dz\mathrm dr
+= e^{cx} \int_0^t \frac{1}{2\sqrt{2\pi r}} \Pi_{0,0}[e^{-cB_{r/2}}] \mathrm d r
+\\& =  e^{cx} \int_0^t \frac{1}{2\sqrt{2\pi r}} e^{\frac{1}{2}c^2 r} \mathrm d r < \infty.
+\qedhere
+\end{align}
+\end{proof*}
+\end{proof}
+\subsubsection{} \label{sec:SPDE.1}
+Now let $W$ be a $\mathcal F$-white noise. 
+Let $f, \sigma\in \mathscr P_\mathrm e$. 
+We say $u$ is a \emph{(mild) solution to SPDE}
+\begin{equation} \label{eq:SPDE.1}
+	\partial_t u_{t,x} = \Delta_x u_{t,x} + f_{t,x} + \sigma_{t,x} \dot W_{t,x}, \quad t\geq 0, x\in \mathbb R,
+ \end{equation}
+if $u \in \mathscr P_\mathrm e$ is a continuous random field such that for each $t> 0$ and $x\in \mathbb R$, almost surely
+\begin{align} \label{eq:SPDE.15}
+u_{t,x} 
+= \iint_0^t G_{s,y;t,x} M(\mathrm ds\mathrm dy)
+\end{align}
+where
+\[
+M(\mathrm ds\mathrm dy) 
+= u_{0,y} \delta_0(\mathrm ds) \mathrm dy + f_{s,y}\mathrm ds\mathrm dy + \sigma_{s,y}W(\mathrm ds\mathrm dy).
+\]
+Note that from Lemma \ref{thm:SC.4} the right hand side of \eqref{eq:SPDE.15} is always well-defined.
+
+\begin{lemma} \label{thm:SC.45}
+	Suppose that $u$ is a solution to SPDE \eqref{eq:SPDE.1}. 
+	Then for each $\phi \in C_{\rm c}^{1,2}([0,\infty)\times \mathbb R)$, almost surely we have
+\begin{align}
+	\int \phi_{t,y} u_{t,y} \mathrm dy
+	= \iint_0^t (\partial_s \phi_{s,x} +\partial_x^2 \phi_{s,x})u_{s,x}\mathrm ds\mathrm dx + \iint_0^t \phi_{s,x} M(\mathrm ds\mathrm dx).
+\end{align}
+\end{lemma}
+
+We omit the proof of Lemma \ref{thm:SC.45} since it is similar to the Lemma \ref{thm:SC.5} below.
+
+\subsubsection{}
+Let us fix a $\mathrm v > 0$.
+Let $\tau := \inf\{t \geq s : B_t \geq \mathrm vt \}$. 
+It can be verified that for each $0\leq s< t< \infty$ and $y < \mathrm vs$ there exists a (unique) continuous map $x \mapsto G^\mathrm v_{s,y;t,x}$ from $(-\infty,\mathrm v t)$ to $(0,\infty)$ such that
+\[
+	\int_{-\infty}^{\mathrm vt} G^\mathrm v_{s,y;t,x} \varphi(x)\mathrm dx = \mathrm P_{s,y}[\varphi( B_t); t < \tau], \quad \varphi \in \mathcal B_b(\mathbb R).
+\] 
+For any $0\leq s< t< \infty$, let us define that $G^{\mathrm v}_{s,y;t.x} = 0$ on $\{(y,x)\in \mathbb R^2: y\geq \mathrm vs ~{\rm or}~x\geq \mathrm vt \}$.
+It can also be verified that for each  $0\leq s< t< \infty$ and $y,x\in \mathbb R$, we have 
+\begin{align} \label{eq:SPDE.16}
+0\leq G^{\mathrm v}_{s,y;t,x} \leq G_{s,y;t,x}.
+\end{align}
+
+let $W$ be a $\mathcal F$-white noise. Suppose that $f,\sigma \in \mathscr P_\mathrm e$ are supported on $\{(t,x) \in [0,\infty)\times \mathbb R: x<\mathrm vt\}$.
+We say $v$ is a \emph{(mild) solution to SPDE}
+\begin{equation} \label{eq:SPDE.2}
+\begin{cases}
+\partial_t v_{t,x} = \Delta_x v_{t,x} + f_{t,x} + \sigma_{t,x} \dot W_{t,x}, &\quad t\geq 0, x < \mathrm vt,\\
+v_{t,x} = 0, &\quad t\geq 0, x\geq \mathrm vt,
+\end{cases}
+\end{equation}
+if $v\in \mathscr P_\mathrm e$ is a continuous random field supported on $\{(t,x) \in [0,\infty)\times \mathbb R: x<\mathrm vt\}$ such that for each $t> 0$ and $x\in \mathbb R$, almost surely 
+\begin{align} \label{eq:SPDE.21}
+&  v_{t,x} 
+	= \iint_0^t G^\mathrm v_{s,y;t,x} M(\mathrm ds\mathrm dy),
+\end{align}
+	where 
+\begin{align} 
+& M(\mathrm ds\mathrm dy) = v_{0,y} \delta_0(\mathrm ds) \mathrm dy + f_{s,y}\mathrm ds\mathrm dy + \sigma_{s,y}W(\mathrm ds\mathrm dy).
+\end{align}
+Note that from Lemma \ref{thm:SC.4} and \eqref{eq:SPDE.16} the right hand side of \eqref{eq:SPDE.21} is always well-defined.
+
+\begin{lemma} \label{thm:SC.5}
+	Suppose that $v$ is a solution to SPDE \eqref{eq:SPDE.2}. 
+	Then there exists an adapted, absolutely continuous, real-valued process $(A_t)_{t\geq 0}$ (refered to as the killing process of $v$) such that for each $\phi \in C_{\rm c}^{1,2}([0,\infty)\times \mathbb R)$, almost surely, for each $t\geq 0$,
+\begin{equation} \label{eq:SPDE.25}
+	\int \phi_{t,y} v_{t,y} \mathrm dy
+	= \iint_0^t (\partial_s \phi_{s,x} +\Delta_x \phi_{s,x})v_{s,x}\mathrm ds\mathrm dx + \iint_0^t \phi_{s,x} M(\mathrm ds\mathrm dx) - \int_0^t \phi_{r,r\mathrm v}\mathrm dA_r.
+\end{equation}
+\end{lemma}
+\begin{proof}
+	Note that, given $\phi \in C_{\rm c}^{1,2}([0,\infty)\times \mathbb R)$, almost surely, the four integrals in \eqref{eq:SPDE.25} are all continuous in $t\geq 0$. 
+	Therefore, we only have to proof that for each $\phi \in C_K^{1,2}([0,\infty)\times \mathbb R)$ and $t > 0$, almost surely, \eqref{eq:SPDE.25} is valid.
+	Now, let us fix an arbitrary $\phi \in C_{\rm c}^{1,2}([0,\infty)\times \mathbb R)$ and an arbitrary $t > 0$.
+	Let us first claim that almost surely,
+\begin{equation} \label{eq:SPDE.29}
+\int v_{t,x} \phi_{t,x} \mathrm dx 
+=   \iint_0^t M(\mathrm ds\mathrm dy) \int G^\mathrm v_{s,y;t,x} \phi_{t,x} \mathrm dx.
+\end{equation}
+	Let us then claim that for each $s\geq 0$ and $y\in \mathbb R$,
+\begin{equation} \label{eq:SPDE.3}
+ \int G^\mathrm v_{s,y;t,x}\phi_{t,x}\mathrm dx+\Pi_{s,y}[\phi_{\tau, B_{\tau}}; t\geq \tau] 
+ = \phi_{s,y}+ \iint_s^t G^\mathrm v_{s,y;r,x} (\partial_r \phi_{r,x}+\Delta_x\phi_{r,x}) \mathrm dr\mathrm dx.
+\end{equation} 
+	We will also claim that, almost surely,
+\begin{equation} \label{eq:SPDE.31}
+\iint_0^t M(\mathrm ds\mathrm dy) \iint_s^t G^\mathrm v_{s,y;r,x}(\partial_r\phi_{r,x} + \Delta_x\phi_{r,x}) \mathrm dr\mathrm dx 
+= \iint_0^t  (\partial_r\phi_{t,x}+\Delta_x\phi_{r,x}) v_{r,x} \mathrm dr\mathrm dx.
+\end{equation}
+	Let us finally claim that there exists an adapted, absolutely continuous, real-valued process $(A_r)_{r\geq 0}$, such that almost surely,
+\begin{align} \label{eq:SPDE.32}
+& \iint_0^t \Pi_{s,y}[\phi_{\tau, B_\tau}; t>\tau] M(\mathrm ds\mathrm dy) = \int_0^t \phi_{r,\mathrm vr} \mathrm dA_r.
+\end{align}
+	Finally we can verify that almost surely, 
+\begin{align} 
+&  \int v_{t,x} \phi_{t,x} \mathrm dx 
+\overset{\eqref{eq:SPDE.29}}=   \iint_0^t M(\mathrm ds\mathrm dy) \int G^\mathrm v_{s,y;t,x} \phi_{t,x} \mathrm dx 
+\\ &\overset{\eqref{eq:SPDE.3}}=   \iint_0^t M(\mathrm ds\mathrm dy) \Big(\phi_{s,y} + \iint_s^t G_{s,y;r,x}^\mathrm v (\partial_r\phi_{t,x}+\Delta_x\phi_{r,x}) \mathrm dr\mathrm dx - \Pi_{s,y}[\phi_{\tau, B_\tau}; t>\tau]\Big) 
+\\ &\overset{\eqref{eq:SPDE.31}, \eqref{eq:SPDE.32}}= \iint_0^t \phi_{s,y}M(\mathrm ds\mathrm dy) + \iint_0^t  (\partial_r\phi_{t,x}+\Delta_x\phi_{r,x}) v_{r,x} \mathrm dr\mathrm dx - \int_0^t \phi_{r,\mathrm vr}d \dot A_r
+\end{align}
+as desired.
+
+\begin{proof*}[Proof of \eqref{eq:SPDE.29}]
+	This follows directly from \eqref{eq:SPDE.21} and \emph{Stochastic Fubini theorem} \cite[Theorem 7.24]{Li2010Measure-valued}.
+\end{proof*}
+
+\begin{proof*}[Proof of \eqref{eq:SPDE.3}]
+	According to \emph{Ito's formula} \cite[Theorem 3.3 and Remark 1 on p.~147]{RevuzYor1999Continuous}, we know that for each $s\geq 0$ and $y\in \mathbb R$, under probability $\Pi_{s,y}$,
+\begin{align} 
+& \phi_{t,B_t} - \phi_{s,y} - \int_s^t (\partial_r \phi_{r,x} + \Delta_x \phi_{r,x})|_{x=B_r} \mathrm dr, \quad t\geq s 
+\end{align}
+	is a zero-mean martingale.
+	Then, according to \emph{optional sampling theorem} \cite[Theorem 7.29]{Kallenberg2002Foundations} we have for each $0\leq s< t$ and $y\in \mathbb R$
+\begin{align} 
+&  \Pi_{s,y}[\phi_{t\wedge \tau, B_{t\wedge \tau}}] 
+= \phi_{s,y} + \int_s^t \Pi_{s,y}[(\partial_r\phi_{r,x}+\Delta_x\phi_{r,x})|_{x=B_r}; r< \tau]\mathrm dr.
+\qedhere
+\end{align}
+\end{proof*}
+\begin{proof*}[Proof of \eqref{eq:SPDE.31}]
+	This follows directly from \eqref{eq:SPDE.21} and Stochastic Fubini theorem.
+\end{proof*}
+\begin{proof*}[Proof of \eqref{eq:SPDE.32}]
+	For each $s\geq 0$ and $y \in (-\infty, \mathrm vs)$, let us denote by $(p_{s,y;r})_{r\geq s}$ the density function of $\tau$ under probability $\Pi_{s,y}$.
+	Noticing that $M$ is supported on $\{(s,y): s\geq 0, y \in (-\infty, \mathrm vs)\}$, we can verify that almost surely,
+\begin{align}
+	&\iint_0^t \Pi_{s,y}[\phi_{\tau, B_\tau}; t>\tau] M(\mathrm ds\mathrm dy) 
+	= \iint_0^t M(\mathrm ds\mathrm dy) \int_0^t \mathbf 1_{r\geq s} \phi_{r,\mathrm vr} p_{s,y;r} \mathrm dr
+	\\& \label{eq:SPDE.35}\overset{\text{Stochastic Fubini}}= \int_0^t\phi_{r,\mathrm vr} \Big(\iint_0^r p_{s,y;r} M(\mathrm ds\mathrm dy)\Big)  \mathrm dr.
+\end{align}
+	Note that in order for the Stochastic Fubini theorem to hold in \eqref{eq:SPDE.35}, 
+\[
+	r\mapsto \iint_0^r p_{s,y;r} M(\mathrm ds\mathrm dy), \quad r\geq 0
+\]  
+	has already been chosen as it's progressive measurable version. 
+	This allows us to define
+\[
+	A_s := \int_0^s \Big(\iint_0^r p_{s,y;r} M(\mathrm ds\mathrm dy)\Big) \mathrm dr, \quad s\geq 0
+\]
+	which is the process satisfying all the required properties.
+\end{proof*}
+\end{proof}
+
+\subsubsection{}
+For any real valued function $h$ on $\mathbb R$, define $L_1(h) := \inf \{x\in \mathbb R: h_x \neq 1\}$, $L_0(h):=\inf\{x\in \mathbb R: h_x \neq 1\}$ and $R_0(h) := \sup \{x\in \mathbb R: h_x \neq 0\}$.
+We say a real-valued function $h$ on $\mathbb R$ has \emph{compact interface} (resp. \emph{compact support}) if $|L_1(h) - R_0(h)| < \infty$ (resp. $|L_0(h) - R_0(h)|<\infty$)
+We say a real-valued function $h$ on $\mathbb R_+ \times \mathbb R$ has \emph{locally compact interface} (resp. \emph{locally compact support}) if  for all $T>0$, $\sup_{0\leq t\leq T}|L_1(h_{t,\cdot}) - R_0(h_{t,\cdot})| < \infty$ (resp. $\sup_{0\leq t\leq T}|L_0(h_{t,\cdot}) - R_0(h_{t,\cdot})| < \infty$). We say a real-valued random field $h$ has \emph{locally compact interface} (resp. \emph{locally compact support}), if almost surely, $h$ has locally compact interface (resp. \emph{locally compact support}).
+
+\begin{lemma}
+	Suppose that $v$ is a non-negative solution to SPDE \eqref{eq:SPDE.2} which has locally compact interface. 
+	Also suppose that $f$ and $\sigma$ both have locally compact support.
+	Then the corresponding killing process $A$ given by Lemma \ref{thm:SC.5} is a non-decreasing process.
+\end{lemma}
+
+\begin{proof}
+	Since $(A_t)_{t\geq 0}$ is a continuous process, we only have to proof that for each $0\leq s < t < \infty$, almost surely $A_s\leq A_t$.
+	We first claim that for each $t\geq 0$ almost surely, 
+\begin{align} \label{eq:SPDE.4}
+& A_t =  - \int (v_{t,x} - v_{0,x})\mathrm dx + \iint_0^t \big(f_{s,y} \mathrm ds\mathrm dy + \sigma_{s,y} W(\mathrm ds\mathrm dy)\big).
+\end{align}
+Let $\varphi$ is a real function on $\mathbb R$ with compact interface which satisfies that
+\begin{equation}
+\varphi_x =
+\begin{cases} 
+{\rm smooth}, & x \in [0,\infty),
+\\ -x(x+2), & x \in [-1,0],
+\\ 1, & x \in (-\infty,-1].
+\end{cases}
+\end{equation}
+We also claim that for each $t\geq 0$,
+\begin{equation}\label{eq:SPDE.41}
+\begin{multlined}
+	-  \iint_0^t (\partial_s \varphi^{(m)}_{s,x} + \partial_x^2 \varphi^{(m)}_{s,x}) v_{s,x}\mathrm ds\mathrm dx
+	\xrightarrow[m\to \infty]{\mathrm P}
+	 \\ - \int (v_{t,x} - v_{0,x})\mathrm dx + \iint_0^t \big(f_{s,y} \mathrm ds\mathrm dy + \sigma_{s,y} W(\mathrm ds\mathrm dy)\big)
+\end{multlined}
+\end{equation}
+	where for each $s\geq 0, x\in \mathbb R$, and $m \in \mathbb N$, $\varphi^{(m)}_{s,x} := \varphi_{(x-\mathrm vs)m}$.  
+	It is obvious that for each $t\geq 0$, almost surely, 
+\begin{align}
+	& {\rm LHS~of~\eqref{eq:SPDE.41}}
+	= -\int_0^t \mathrm ds \int_{\mathrm vs - \frac{1}{m}}^{\mathrm vs} (\partial_s \phi^{(m)}_{s,x} + \partial_x^2 \phi^{(m)}_{s,x}) v_{s,x} \mathrm dx 
+\\&=\int_0^t \mathrm ds \int_{\mathrm vs - \frac{1}{m}}^{\mathrm vs} \Big(2m^2 - 2\mathrm v m\big(1+ (x-\mathrm vs)m\big) \Big) v_{s,x} \mathrm dx
+\\&=: J_t^{(m)}.
+\end{align}
+
+Now let us fix arbitrary $0\leq s<  t< \infty$.
+Then from \eqref{eq:SPDE.4}, \eqref{eq:SPDE.41} and \cite[Lemma 4.2]{Kallenberg2002Foundations}, we know that there exists a (deterministic) sequence $(m_k)_{k\in \mathbb N} \subset \mathbb N$ such that $m_k \uparrow \infty$ when $k\uparrow \infty$ and that almost surely
+\begin{align} 
+& J_s^{(m_k)} \xrightarrow[k\to \infty]{} A_s, \quad J_t^{(m_k)} \xrightarrow[k\to \infty]{} A_t.
+\end{align}
+This implies that almost surely
+\begin{align} 
+& A_t - A_s  = \lim_{k\to \infty} \int_s^t \mathrm ds \int_{\mathrm vs - \frac{1}{m_k}}^{\mathrm vs} \Big(2m_k^2 - 2\mathrm v m_k\big(1+ (x-\mathrm vs)m_k\big) \Big) v_{s,x} \mathrm dx\geq 0
+\end{align}
+as desired.
+
+\begin{proof*}[Proof of \eqref{eq:SPDE.4}]
+	Since almost surely the both side of \eqref{eq:SPDE.4} are continuous in $t\geq 0$, we only have to proof that for each $t>0$ almost surely \eqref{eq:SPDE.4} is valid.
+	Let us fix an arbitrary $t\geq 0$.
+	Define $h\in C^\infty_{\rm c}(\mathbb R)$ by
+\[
+	h_{x}
+	=  \begin{cases} 0, & x\in (-\infty, -1], \\ \text{smooth}, & x\in [-1,0],\\ 1, & x\in [0,\infty). \end{cases}	
+\]
+	For each $s\geq 0, x\in \mathbb R$ and $n\in \mathbb N$, define
+\begin{equation} \label{eq:SPDE.5}
+\phi^{(n)}_{s,x} 
+= \begin{cases}
+	1 - h_{x-\mathrm vs - 1}, & s\geq 0, x \in [\mathrm vs, \infty)\\
+	1, & s\geq 0, x \in [-n, \mathrm vs] \\ 
+	h_{x+n}, &s\geq 0, x \in (- \infty, -n]. \\
+\end{cases}
+\end{equation}
+	Then we have almost surely, for each $n\in \mathbb N$,
+	\begin{align} 
+	& \begin{multlined}	
+	A_t
+	\overset{\eqref{eq:SPDE.25}}= -\int (\phi^{(n)}_{t,x} v_{t,x} - \phi^{(n)}_{0,x}v_{0,x}) \mathrm dx +\iint_0^t (\partial_s \phi^{(n)}_{s,x} +\Delta_x  \phi^{(n)}_{s,x})v_{s,x}\mathrm ds\mathrm dx 
+	\\+ \iint_0^t \phi^{(n)}_{s,x}( f_{s,x}\mathrm ds\mathrm dx + \sigma_{s,x} W(\mathrm ds\mathrm dx))
+	\end{multlined}
+	\\ \label{eq:SPDE.54}&=: - I_1 + I_2 + I_3.
+	\end{align}
+	Notice that $v$ has locally finite interface, also notice that $f,\sigma$ have locally finite support. 
+	Therefore there exists a random variable $N_t>0$ such that
+\begin{align}  \label{eq:SPDE.55}
+& v_{s,x} = 1,\quad  f_{s,x} = 0,\quad \sigma_{s,x} = 0, \quad 0\leq s\leq t, x\leq - N_t, \quad {\rm a.s.}
+\end{align}
+	Due to the fact that, almost surely, $v, f$ and $\sigma$ are all supported on $\{(s,x) \in [0,\infty)\times \mathbb R: x<\mathrm vs\}$, we have
+\begin{align} \label{eq:SPDE.56}
+&  v_{s,x} = 0,\quad  f_{s,x} = 0,\quad \sigma_{s,x} = 0, \quad s\geq 0, x\geq \mathrm vs, \quad {\rm a.s.}
+\end{align}
+	Now we can verify that almost surely for each $n > N_t$,
+\begin{align} 
+& I_1 
+=  \int (\phi^{(n)}_{t,x} v_{t,x} - \phi^{(n)}_{0,x}v_{0,x}) \mathrm dx
+= \int \Big( \phi^{(n)}_{t,x} ( v_{t,x} - v_{0,x})  + (\phi^{(n)}_{t,x} - \phi^{(n)}_{0,x}) v_{0,x} \Big)\mathrm dx
+ \\ & =\Big(\int_{-\infty}^{-n} + \int_{-n}^{\mathrm vt} + \int_{\mathrm vt}^\infty \Big)  \phi^{(n)}_{t,x} ( v_{t,x} - v_{0,x}) \mathrm dx +\Big(\int_{-\infty}^0 + \int_0^\infty \Big)   (\phi^{(n)}_{t,x} - \phi^{(n)}_{0,x}) v_{0,x} \mathrm dx
+\\\label{eq:SPDE.57}&\overset{\eqref{eq:SPDE.5}, \eqref{eq:SPDE.5},\eqref{eq:SPDE.55}}= \int (v_{t,x} - v_{0,x})\mathrm dx,
+\end{align}
+and 
+\begin{align} 
+& I_2 =  \int_0^t \mathrm ds \Big(\int_{\mathrm vs}^\infty + \int_{- n}^{\mathrm vs} + \int_{-\infty}^{-n}\Big) (\partial_s  \phi^{(n)}_{s,x} +\Delta_x  \phi^{(n)}_{s,x})v_{s,x} \mathrm dx  
+\\ \label{eq:SPDE.58}& \overset{\eqref{eq:SPDE.5}, \eqref{eq:SPDE.55}, \eqref{eq:SPDE.56}}=  \int_0^t \mathrm ds \int_{-\infty}^{-n} (\partial_s \phi^{(n)}_{s,x} +\Delta_x \phi^{(n)}_{s,x}) \mathrm dx  
+= 0,
+\end{align}
+and also
+\begin{align} 
+& I_3 
+= \iint_0^t (\mathbf 1_{x\in (-\infty, -n]} + \mathbf 1_{x\in (-n,\mathrm vs]} + \mathbf 1_{x\in (\mathrm vs,\infty)}) \phi_{s,x}^{(n)}\Big(f_{s,x}\mathrm ds\mathrm dx + \sigma_{s,x} W(\mathrm ds\mathrm dx)\Big)
+\\\label{eq:SPDE.59}& \overset{\eqref{eq:SPDE.5}, \eqref{eq:SPDE.55}, \eqref{eq:SPDE.56}}= \iint_0^t  \Big(f_{s,x}\mathrm ds\mathrm dx + \sigma_{s,x} W(\mathrm ds\mathrm dx)\Big).
+\end{align}
+The desired result then follows from \eqref{eq:SPDE.54}, \eqref{eq:SPDE.57}, \eqref{eq:SPDE.58} and \eqref{eq:SPDE.59}.
+\end{proof*}
+\begin{proof*}[Proof of \eqref{eq:SPDE.41}]
+	Fix the time $t>0$. Define
+\begin{align} 
+& \varphi_{s,x}^{(m,n)} = 
+\begin{cases}
+\varphi_{m(x-\mathrm vs)}, &s\geq 0, x\in [-n , \infty)\\
+h_{x+n}, &s\geq 0, x\in (-\infty, -n].
+\end{cases}  
+\end{align}
+	Using an argument similar to the proof of \eqref{eq:SPDE.4}, we know that almost surely, for each $m\geq 1$ and $n \geq N_t$,
+\begin{align}
+&\begin{multlined}	
+	0 \overset{\eqref{eq:SPDE.25}}= - \int (\varphi_{t,x}^{(m,n)} v_{t,x} - \varphi_{0,x}^{(m,n)}v_{0,x}) \mathrm dx  + \iint_0^t (\partial_s \varphi_{s,x}^{(m,n)}  + \Delta_x \varphi_{s,x}^{(m,n)})v_{s,x}\mathrm ds\mathrm dx \\ 
+	+ \iint_0^t \varphi_{s,x}^{(m,n)} \Big(f_{s,x}\mathrm ds\mathrm dx+\sigma_{s,x}W(\mathrm ds\mathrm dx)\Big)
+\end{multlined}
+\\& \label{eq:SPDE.65}\begin{multlined}
+= - \int (\varphi_{t,x}^{(m)} v_{t,x} - \varphi_{0,x}^{(m)}v_{0,x}) \mathrm dx  + \iint_0^t (\partial_s \varphi_{s,x}^{(m)}  + \Delta_x \varphi_{s,x}^{(m)})v_{s,x}\mathrm ds\mathrm dx 
+\\ + \iint_0^t \varphi_{s,x}^{(m)} \Big(f_{s,x}\mathrm ds\mathrm dx+\sigma_{s,x}W(\mathrm ds\mathrm dx)\Big).
+\end{multlined}
+\end{align}
+	Note that, using dominated convergence theorem, we have almost surely
+\begin{align}\label{eq:SPDE.66}
+	\int (\varphi_{t,x}^{(m)} v_{t,x} - \varphi_{0,x}^{(m)}v_{0,x}) \mathrm dx
+	\xrightarrow[m\to \infty]{} \int ( v_{t,x} - v_{0,x}) \mathrm dx,
+\end{align} 
+\begin{align} \label{eq:SPDE.67}
+&  \iint_0^t \varphi_{s,x}^{(m)} f_{s,x}\mathrm ds\mathrm dx 
+\xrightarrow[m\to \infty]{} \iint_0^t f_{s,x}\mathrm ds\mathrm dx,
+\end{align}
+and 
+\begin{align} \label{eq:SPDE.68}
+&  \iint_0^t (\varphi_{s,x}^{(m)} \sigma_{s,x} - \sigma_{s,x})^2\mathrm ds\mathrm dx 
+\xrightarrow[m\to \infty]{} 0.
+\end{align}
+According to \eqref{eq:SPDE.68} and \cite[Proposition 17.6]{Kallenberg2002Foundations}, we have that 
+ \begin{align} \label{eq:SPDE.69}
+ &  \iint_0^t \varphi_{s,x}^{(m)} \sigma_{s,x} W(\mathrm ds\mathrm dx)
+ \xrightarrow[m\to \infty]{\text{in probability}}   \iint_0^t  \sigma_{s,x} W(\mathrm ds\mathrm dx).
+ \end{align}
+ The desired result then follows from \eqref{eq:SPDE.65}, \eqref{eq:SPDE.66}, \eqref{eq:SPDE.67} and \eqref{eq:SPDE.69}.
+
+\end{proof*}
+\end{proof}
+
+\section{Proof of Proposition \ref{thm:S.2}} \label{sec:f}
+In this subsection, we will consider a class of functions $g$ satisfying that
+\begin{equation} \label{eq:f.04}
+\begin{cases}
+g \in C(\mathbb R); 
+\\ g(u)  = 0, \quad u \in (0,1)^c; 
+\\ g(u)>0, \quad  u \in (0,1); 
+\\ g \text{~is locally Lipschitz on $(0,1]$};
+\\ \varliminf_{u \to 0} u^{-1}g(u) =: r_g^{\eqref{eq:f.04}} > 0.	 
+\end{cases}
+\end{equation}
+\begin{proposition} \label{thm:f.1}
+	For any $\mathrm v>0$, $c>0$ and $g$ satisfying \eqref{eq:f.04}, the following problem for $\mathrm x$ exists a unique solution 
+	\begin{equation}
+	\begin{cases}
+	\mathrm x \in C^2[0,\infty);
+	\\ 2^{-1} \mathrm x''(t) = \mathrm v \mathrm x'(t) - g\left(\mathrm x(t)\right), \quad t \geq 0;
+	\\ \mathrm x(0)= c>0;
+	\\ \lim_{t\to \infty}\mathrm x(t) = 1.
+	\end{cases}
+	\end{equation}
+	Moreover, the solution $\mathrm x$ is strictly increasing.
+	The solution will be denoted by $\mathrm x_{\mathrm v, c, g}^{\ref{thm:f.1}}$.
+\end{proposition}
+
+For any $\mathrm v>0$, $c\in (0,\frac{1}{2})$ and $g$ satisfying \eqref{eq:f.04}, write
+\begin{equation} \label{eq:f.05}
+\mathrm t_{\mathrm v, c, g}^{\eqref{eq:f.05}} := \inf\{t \geq 0: \mathrm x(t) = 2^{-1}\} \quad \text{where } \mathrm x = \mathrm x_{\mathrm v, c, g}^{\ref{thm:f.1}},
+\end{equation}
+and 
+\begin{equation} \label{eq:f.06}
+\mathrm x_{\mathrm v, c, g}^{\eqref{eq:f.06}}(t) =
+\begin{cases}
+\mathrm x_{\mathrm v, c, g} (t + \mathrm t_{\mathrm v, c, g}^{\eqref{eq:f.05}}), \quad & t + \mathrm t_{\mathrm v, c, g}^{\eqref{eq:f.05}} \geq 0,
+\\
+c, \quad &t + \mathrm t_{\mathrm v, c, g}^{\eqref{eq:f.05}} < 0.
+\end{cases}
+\end{equation}
+
+\begin{proposition} \label{thm:f.2}
+	For any $\mathrm v>0$ and $g$ satisfying \eqref{eq:f.04}, $c \mapsto \mathrm x_{\mathrm v, c,g}^{\eqref{eq:f.06}}$ is non-decreasing point-wisely.
+	Therefore, we can define
+	$
+	\mathrm x_{\mathrm v,g}^{\ref{thm:f.2}} = \lim_{c\downarrow 0} \mathrm x_{\mathrm v,c,g}^{\eqref{eq:f.06}}
+	$
+	point-wisely.
+	Moreover, $c\mapsto \mathrm t_{\mathrm v, c, g}^{\eqref{eq:f.05}}$ is non-increasing on $(0,2^{-1})$.
+	And it holds that
+	$
+	\mathrm t^{\ref{thm:f.2}}_{\mathrm v, g} = \lim_{c\downarrow 0} \mathrm t_{\mathrm v, c , g}^{\eqref{eq:f.05}} < \infty.
+	$
+\end{proposition}
+
+For any $\mathrm v>0$ and $g$ satisfying \eqref{eq:f.04}, define 
+\begin{equation} \label{eq:f.07}
+\mathrm x_{\mathrm v, g}^{\eqref{eq:f.07}}(t) = \mathrm x_{\mathrm v, g}^{\ref{thm:f.2}}(t - \mathrm t_{\mathrm v,g}^{\ref{thm:f.2}}).
+\end{equation}
+\begin{proposition} \label{thm:f.3}
+	Let $\mathrm v>0$ and $g$ satisfy \eqref{eq:f.04}. 
+	Then it can be verified that $\mathrm x = \mathrm x_{\mathrm v,g}^{\eqref{eq:f.07}}$ is the unique solution to the following problem:
+	\begin{equation}
+	\begin{cases}
+	\mathrm x \in C^2[0,\infty);
+	\\ 2^{-1} \mathrm x''(t) = \mathrm v \mathrm x'(t) - g\big(\mathrm x(t)\big), \quad t \geq 0;
+	\\ \mathrm x(0) = 0;
+	\\ \mathrm x(t) > 0, \quad t > 0;
+	\\ \lim_{t\to \infty}\mathrm x(t) = 1.
+	\end{cases}
+	\end{equation}
+	Denote $\varepsilon_{\mathrm v, g}^{\ref{thm:f.3}} = \mathrm x'(0)$.
+\end{proposition}
+
+For a given $\mathrm v>0$ and a given $g$ satisfying \eqref{eq:f.04}, let us consider the following vector field on the phase plane $\mathbb R^2$: 
+\begin{align} \label{eq:f.08}
+\begin{cases}
+\mathrm x' = \mathrm y,
+\\ \mathrm y' = 2\mathrm v \mathrm y - 2g(\mathrm x),
+\end{cases}
+\quad (\mathrm x, \mathrm y) \in \mathbb R^2.
+\end{align}
+Then it can be verify that $\mathrm x(t) = \mathrm x_{\mathrm v, g}^{\ref{eq:f.07}}(t), t \in [0,\infty)$ and $\mathrm y(t) = \mathrm x'(t), t \in [0,\infty)$ satisfy \eqref{eq:f.08}; in addition, $(\mathrm x(0), \mathrm y(0)) \in \{(x,y): y = 0, x>0\}$ and $(\mathrm x(t), \mathrm y(t)) \xrightarrow[t\to \infty]{}(1,0)$. 
+Therefore, we call 
+$
+\big\{\big(\mathrm x (t), \mathrm x'(t)\big): t\geq 0 \big\}
+$
+\emph{the separatrix line of the vector field \eqref{eq:f.08} connecting $\{(x,y): y = 0, x>0\}$ and $(1,0)$}.
+
+\begin{proposition} \label{thm:f.4}
+	Let $\mathrm v>0$ and $g$ satisfy \eqref{eq:f.04}. 
+	Then there exists a function $S= S^{\ref{thm:f.4}}_{\mathrm v, g}$ on $[0,1)$ such that $\{(x, S(x)): x\in [0,1)\}$ is the separatrix line of the vector field \eqref{eq:f.08} connecting $\{(x,y): y = 0, x>0\}$ and $(1,0)$.
+	Moreover, fixing $g$, $\mathrm v \mapsto S_{\mathrm v, g}$ is non-increasing point-wisely; fixing $\mathrm v$, then for $g_0 \leq g_1$, we have  $S_{\mathrm v, g_0} \leq S_{\mathrm v, g_1}$ point-wisely.
+	Note that, we also have 
+	$
+	S(0)  =\varepsilon_{\mathrm v, g}^{\ref{thm:f.3}}.
+	$
+\end{proposition}
+
+\begin{proposition} \label{thm:f.4.5}
+	Let $\mathrm v>0$ and $g$ satisfy \eqref{eq:f.04}. 
+	Then $S= S^{\ref{thm:f.4}}_{\mathrm v, g}$ is the unique solution to the following problem 
+	\begin{equation} \label{eq:09}
+	\begin{cases}
+	S \in C^1[0,1);
+	\\S'(x) = 2 S(x)^{-1} \left(\mathrm v S(x) - g(x) \right), \quad x\in [0,1);
+	\\\lim_{x\to 1} S(x) = 0.
+	\end{cases}
+	\end{equation}
+\end{proposition}
+
+\begin{proposition} \label{thm:f.5}
+	For each $\varepsilon >0 $, $c>0$ and $\mathrm v > 0$, define
+	\[g_{\varepsilon, c, \mathrm v}^{\ref{thm:f.5}}(x) := 2^{-1} \left(2(\varepsilon + 2\mathrm v - c)x + c\right) \left((\varepsilon+2\mathrm v - c)x+ \varepsilon)\right)(1-x), \quad x\in [0,1).\]
+	Then for each $\mathrm v>0$ and $f$ satisfy \eqref{eq:f.04}, it holds that
+	\[
+	\varepsilon_{\mathrm v, f}^{\ref{thm:f.3}} \leq \inf\{\varepsilon > 0: \exists c>0 \text{ s.t. } g_{\varepsilon, c, \mathrm v}^{\ref{thm:f.5}} \geq f\}.
+	\]
+\end{proposition}
+\begin{proof}
+	For each $\varepsilon >0 $, $c>0$ and $\mathrm v > 0$, define
+	\begin{equation} \label{eq:f.10}
+	S(x) 
+	:= S_{\varepsilon, c, \mathrm v}^{\eqref{eq:f.10}}(x) 
+	:=  \left( ( \varepsilon + 2 \mathrm v - c ) x + \varepsilon \right) ( 1 - x ), \quad x\in [0,1).
+	\end{equation}
+	Then it can be verified that
+	\begin{align}
+	&S'(x) =  ( \varepsilon + 2 \mathrm v - c )  ( 1 - x ) - \big( ( \varepsilon + 2 \mathrm v - c ) x + \varepsilon \big)
+	\\& = - 2 ( \varepsilon + 2 \mathrm v - c ) x + 2 \mathrm v - c, \quad x\in [0,1].
+	\end{align}
+	And it can also be verified that
+	\begin{align}
+	&2^{-1}\big(2\mathrm v - S'(x)\big) S(x) 
+	\\&=  2^{-1}\big( 2 ( \varepsilon + 2 \mathrm v - c ) x + c \big) \big( ( \varepsilon + 2 \mathrm v - c ) x + \varepsilon \big) ( 1 - x ) 
+	\\&= g_{\varepsilon, c, \mathrm v}^{\ref{thm:f.5}}(x)
+	=: g(x), \quad x\in [0,1].
+	\end{align}
+	Now using Proposition \ref{thm:f.4.5} we have that  
+	\begin{equation}
+	S_{\varepsilon, c, \mathrm v}^{\eqref{eq:f.10}}(x) = S^{\ref{thm:f.4}}_{\mathrm v, g}(x), \quad x\in [0,1).
+	\end{equation}
+	
+	Now let $\mathrm v>0$ and $f$ satisfy \eqref{eq:f.04}.
+	Suppose that $\varepsilon>0$ and $c>0$ satisfy that $g := g_{\varepsilon, c, \mathrm v}^{\ref{thm:f.5}} \geq f$.
+	Then, we have
+	\[
+	\varepsilon_{\mathrm v, f}^{\ref{thm:f.3}} = S^{\ref{thm:f.4}}_{\mathrm v, f}(0) \leq S^{\ref{thm:f.4}}_{\mathrm v, g}(0) = S_{\varepsilon, c, \mathrm v}^{\eqref{eq:f.10}}(0) = \varepsilon.
+	\qedhere
+	\]
+\end{proof}
+
+\subsubsection{Some thoughts}
+Let $\mathrm v = \bar \varepsilon^2  = 1$. 
+Let constant $c = 1$.
+Consider 
+\[
+\bar S(x) = ((\varepsilon+2\mathrm v - c)x+\varepsilon)(1-x), \quad x\in [0,1].
+\]
+Then we have
+\begin{align}
+&\bar S'(x) 
+= (\varepsilon + 2\mathrm v  - c) (1-x) - ((\varepsilon + 2\mathrm v - c) x + \varepsilon)
+\\ &=  -2(\varepsilon + 2\mathrm v - c) x + 2\mathrm v  - c, \quad x\in [0,1].
+\end{align}
+So we can define that
+\begin{align}
+&g(x) = \big(2\mathrm v - S'(x)\big) S(x)  =  \big(2(\varepsilon + 2\mathrm v - c)x + c\big) \big((\varepsilon+2\mathrm v - c)x+\epsilon)\big)(1-x)
+\\& =(4x +1) (2x+1) (1-x) 
+\\&\geq x^{1/2}(1-x) = f(x), \quad x\in [0,1]. 
+\end{align}
+Therefore we have
+\[
+\bar S(x) = S_{\mathrm v, g}^{\ref{thm:f.4}}(x)
+\geq S_{\mathrm v, f}^{\ref{thm:f.4}}(x).
+\]
+Therefore, we have that
+\[
+- F'(0) = S_{\mathrm v, f}^{\ref{thm:f.4}}(0) \leq S_{\mathrm v, g}^{\ref{thm:f.4}}(0) = \varepsilon = 1.
+\]
+\subsubsection{Some analysis}
+Let us first give a concept called the \emph{$g$-segment} for a given positive, continuous, non-negative function $g$ on $[0,1]$ which satisfies that $g(1) = 0$ and that, for any $\epsilon>0$, $g|_{(\epsilon, 1]}$ is Lipschitz.
+Setting $g = 0$ on $[0,1]^c$, considering the following vector field for $(x,y) \in \mathbb R^2$,
+\begin{align}
+\begin{cases}
+\mathrm x' =  \mathrm y,\\
+\mathrm y' = 2\mathrm v \mathrm y - g(\mathrm x).
+\end{cases}
+\end{align}
+We say $S_g$, a subset $\mathbb R^2$, is the $g$-segment if 
+
+Let $F$ be a traveling wave solution of PDF \eqref{eq:S.1}. 
+This is equivalent of saying that $\mathrm x(t):= F(-t), t\in \mathbb R$ is a solution of 
+\[
+\mathrm v \mathrm x' = \frac{1}{2} \Delta \mathrm x + f(\mathrm x), \quad \text{on } [0,\infty); \quad \mathrm x = 0, \quad \text{on } (-\infty, 0).
+\]
+
+To solve this equation we consider the following vector field $\mathrm x' = \mathrm y$ and $\frac{1}{2}\mathrm y' =\mathrm v \mathrm y - f(\mathrm x)$.
+It can be verified that the point $(0,1)$ is a saddle point.
+Change the drift term into another positive smooth function $f_\epsilon$ on $[0,1]$ which coincides with $f$ on $(\epsilon, 1]$ and satisfies that $f_\epsilon(0) = 0$.
+Such drift term satisfies the KPP condition, so for its relevant vector field, which will be referred as $\epsilon$-vector field for the moment, $(0,0)$ is a stable point and $(0,1)$ is a saddle point. 
+There will be a separatrix line connecting $(0,0)$ and $(0,1)$ for every $\epsilon$-vector field which will be referred as $\epsilon$-separatrix line.
+Consider two $\epsilon' < \epsilon$, then it is clear that the $\epsilon'$-vector field and $\epsilon$-vector field coincide with each other on $\{(x,y)\in \mathbb R: x \geq \epsilon\}$. 
+Therefore, the connected segment of the $\epsilon$-separatrix line connecting $(0,1)$ and the line $\{(x,y): x = \epsilon, y>0\}$, is the exactly the same as for the $\epsilon'$-separatrix line. 
+Those common segments gives a line that connect $(0,1)$ to the line $\{(x,y): x = 0, y\geq 0\}$. 
+We will refer to this line the $f$-saparatrix line.
+
+Let
+\begin{equation} \label{eq:f.3}
+c_\mathrm v^{\eqref{eq:f.3}} := (\mathrm v^2/2p)^{1/(p-1)}. 
+\end{equation}
+Consider a linear upper bound of $f$:
+\begin{align} \label{eq:f.4}
+&\overline{f}_{\mathrm v}^{\eqref{eq:f.4}}(x) := \max\{\min\{pc^{p-1}(x-c) + c^p, 1 - x\}, 0\}, \quad \text{where $c = c_\mathrm v^{\eqref{eq:f.3}}$}
+\\&=\begin{cases}
+0, & \quad x\leq 0,\\
+pc^{p-1}(x-c)+c^p,&\quad 0 < x \leq c^{\eqref{eq:f.4}}_\mathrm v :=\frac{1 - (1- p)c^p}{1+pc^{p-1}},\\
+1-x,&\quad  c^{\eqref{eq:f.4}}_\mathrm v < x\leq 1,\\
+0, & \quad 1 \leq x.
+\end{cases}
+\end{align}
+
+Let us consider the $\overline{f}_\mathrm v^{\eqref{eq:f.4}}$-separatrix line. 
+The line, in the region $\{(x,y): 0 \leq x < c_\mathrm v^{\eqref{eq:f.4}} \}$ actually gonna solve the following vector field:
+\begin{align} \label{eq:f.5}
+\begin{cases}
+\mathrm x'=\mathrm y \\
+\frac{1}{2}\mathrm y' = \mathrm v \mathrm y -  pc^{p-1}\mathrm x + (1-p)c^{p}, \quad c = c_\mathrm v^{\eqref{eq:f.3}}.
+\end{cases}
+\end{align}
+
+Any solution of this vector fields satisfies that
+\[
+\frac{1}{2}\mathrm y'' = \mathrm v \mathrm y' -  pc^{p-1}\mathrm y, \quad c = c_\mathrm v^{\eqref{eq:f.3}}.
+\]
+The characteristic function for this homogeneous 2rd-order equation is \[x^2  - 2\mathrm v x + \mathrm v^2= 0\]
+which have solution $x = \mathrm v$.
+Now, using the standard theory for the homogeneous 2rd-order equation, we have if $t\mapsto \mathrm y(t)$ on $\mathbb R$ satisfies \eqref{eq:f.5}, then we have
+\[
+\mathrm y(t) = \mathrm y(0) e^{\mathrm v t} + (\mathrm y'(0) - \mathrm y(0)\mathrm v) te^{\mathrm vt}, \quad t\in \mathbb R.
+\]
+
+From \eqref{eq:f.5} we have that $\mathrm y(0) =\mathrm x'(0) $ and $\mathrm y'(0)= 2\mathrm v \mathrm x'(0) + (1-p)c^p$.
+Therefore,
+\begin{align}
+\mathrm x(t) & = \int_0^t (\mathrm y(0)e^{\mathrm vs} + (\mathrm y'(0) - \mathrm y(0) \mathrm v) s e^{\mathrm vs}) \mathrm ds
+\\& = \mathrm y(0) (e^{\mathrm v t} - 1) + (\mathrm y'(0) - \mathrm y(0) \mathrm v) (te^{\mathrm v t}-e^{\mathrm v t}+1)
+\\& = \mathrm x'(0) (e^{\mathrm v t} - 1) + \left(\mathrm v \mathrm x'(0) + (1-p)c^p\right) (te^{\mathrm v t}-e^{\mathrm v t}+1),
+\end{align}
+on $t\leq \Theta$ where $\Theta:= \inf\{t\geq 0: \mathrm x(t) \geq c_\mathrm v^{\eqref{eq:f.4}}\}$.
+
+Now, we want to connect this solution with the other solution on $\{(x,y): c_\mathrm v^{\eqref{eq:f.4}}< x \leq 1\}$. 
+On this region, the vector field is
+\begin{align}
+\begin{cases}
+\mathrm x' = \mathrm y \\
+\mathrm y' = 2\mathrm v \mathrm y  - 2 + 2\mathrm x, \quad c = c_\mathrm v^{\eqref{eq:f.3}} 
+\end{cases}
+\end{align}
+Then the separatrix line for this vector field is 
+\begin{align}
+\frac{1-\mathrm x(t)}{- \mathrm y(t)}=\frac{-\sqrt{\mathrm v^2 + 2 \mathrm v}-\mathrm v}{2} = \frac{\mathrm x'(t)}{\mathrm y'(t)}, \quad t\geq 0.
+\end{align}
+The underlying idea is to try to solve the equation
+\begin{align}
+\frac{1-\mathrm x(t)}{- \mathrm y(t)}=\frac{\mathrm x'(t)}{\mathrm y'(t)} = \frac{\mathrm y}{2\mathrm v\mathrm y-2+2\mathrm x}, \quad t\geq 0.
+\end{align}
+
+So in order to connect, we want 
+\begin{align}
+\frac{1- \mathrm x(\Theta)}{- \mathrm y(\Theta)} =  \frac{-\sqrt{\mathrm v^2 + 2 \mathrm v}-\mathrm v}{2}
+\end{align}
+and this becomes an equation systems for $\Theta$ and $\mathrm x'(0)$:
+\begin{align}
+\begin{cases}
+\mathrm x'(0)(e^{\mathrm v \Theta} - 1) + \left(\mathrm v \mathrm x'(0) + (1-p)c^p\right) (\Theta e^{\mathrm v \Theta} - e^{\mathrm v \Theta} + 1) = c_\mathrm v^{\eqref{eq:f.4}}\\
+\mathrm x'(0) e^{\mathrm v \Theta} + \left(\mathrm v \mathrm x'(0) + (1-p)c^p\right) \Theta e^{\mathrm v\Theta} = 2\frac{1 - c_\mathrm v^{\eqref{eq:f.4}}}{\sqrt{\mathrm v^2 + 2\mathrm v} - \mathrm v}.
+\end{cases}
+\end{align}
+	
+\begin{thebibliography}{99}
+	
+	\bibitem{DalangKhoshnevisanMuellerNualartXiao2009Minicourse}
+	Dalang, R., Khoshnevisan, D.,Mueller, C., Nualart, D., and Xiao, Y.:
+	\emph{A minicourse on stochastic partial differential equations.}
+	Vol. 1962. Berlin, Germany: Springer, 2009. 
+	
+	\bibitem{ElKarouiMeleard1990Martingale}
+	El Karoui, N., and M\'el\'eard, S.:
+	\emph{Martingale measures and stochastic calculus.}
+	Probab. Theory Related Fields 84 (1990), no. 1, 83–101.
+	\MR{1027822}
+	
+	\bibitem{Kallenberg2002Foundations}
+	Kallenberg, O.:
+	\emph{Foundations of modern probability.}
+	Second edition. Probability and its Applications (New York). Springer-Verlag, New York, 2002.
+	\MR{1876169}
+	
+	\bibitem{Kallenberg2017Random}
+	Kallenberg, O.:
+	\emph{Random measures, theory and applications.}
+	Probability Theory and Stochastic Modelling, 77. Springer, Cham, 2017.
+	\MR{3642325}
+	
+	\bibitem{Li2010Measure-valued}
+	Li, Z.: 
+	\emph{Measure-valued branching Markov processes.} 
+	Springer Science \& Business Media, 2010.	
+	
+	\bibitem{MuellerMytnikQuastel2011Effect}
+	Mueller, C., Mytnik, L., and Quastel, J.:
+	\emph{Effect of noise on front propagation in reaction-diffusion equations of KPP type.}
+	Invent math (2011).
+	
+	\bibitem{MuellerMytnikRyzhik2019TheSpeed}
+	Mueller, C., Mytnik, L. and Ryzhik. L.: 
+	\emph{The speed of a random front for stochastic reaction-diffusion equations with strong noise.} 
+	(2019) arxiv:1903.03645.
+	
+	\bibitem{Nikeghbali2006An}
+	Nikeghbali, A.:
+	\emph{An essay on the general theory of stochastic processes.}
+	Probab. Surv. 3 (2006), 345–412.
+	\MR{2280298}
+	
+	\bibitem{Perkins2002Dawson-Watanabe}
+	Perkins, E.:
+	\emph{Dawson-Watanabe superprocesses and measure-valued diffusions.} 
+	Lectures on probability theory and statistics (Saint-Flour, 1999), 125–324, Lecture Notes in Math., 1781, Springer, Berlin, 2002.
+	\MR{1725357}
+	
+	\bibitem{RevuzYor1999Continuous}
+	Revuz, D. and Yor, M.:
+	\emph{Continuous martingales and Brownian motion.}
+	Third edition. Grundlehren der Mathematischen Wissenschaften [Fundamental Principles of Mathematical Sciences], 293. Springer-Verlag, Berlin, 1999.
+
+	\bibitem{Tribe}
+	Tribe, R.:
+	\emph{Large time behavior of interface solutioons to the heat equation with Fisher-Wright noise.}
+	Probability Theory and Related Fields 102, 289-311 (1995).
+	
+	\bibitem{Walsh1986An-introduction}
+	Walsh, J.:
+	\emph{An introduction to stochastic partial differential equations.} 
+	\'Ecole d'\'et\'e de probabilit\'es de Saint-Flour, XIV—1984, 265–439, Lecture Notes in Math., 1180, Springer, Berlin, 1986.
+
+\end{thebibliography}
+\end{document}
